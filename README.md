@@ -38,11 +38,11 @@ Als nächstes haben wir die Angular Application installiert mit:
 ```
 ng new DigitalerEinkaufszettelAngular
 ```
-Nun fügen wir unsere Komponten hinzu aus der sich am Ende die Webseite zusammensetzen wird:
+Nun fügen wir unsere Komponenten hinzu aus der sich am Ende die Webseite zusammensetzen wird:
 ```
 cd DigitalerEinkaufszettelAngular
 ng g c page-list
-ng g c_ template/template-tobuy
+ng g c _template/template-tobuy
 ng g c _template/template-tobuy-form
 ng g c _template/template-header  
 ```
