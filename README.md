@@ -24,10 +24,24 @@ Grundlegenden Konzepte die wichtig bei Angular sind:
 
 **Dependency Injection** stellt einen sog. DI-Container zur Verfügung. Häufig verwen-dete Services (z. B. Datenbankabfragen) lassen sich hierüber kapseln und bei Bedarf in gewünschten Komponenten aufrufen.
 
-**Fazit:** 
+**Fazit:**
 es gibt kaum eine Frontend-Herausforderung, die mit Angular nicht gelöst wer-den kann. Gerade Einsteiger der Webentwicklung sollten jedoch Zeit und Durchhalte-vermögen für den Einstieg mitbringen, dieser wird einem nicht immer leicht gemacht. Dementsprechend findet Angular gerade in großen und Enterprise-Applikationen An-wendung. Auch die Betreuung durch Teams mit einer Vielzahl an Mitwirkenden lässt sich effizient bewerkstelligen.
 
 #### 1.2.1.1 Angular Installation
+Um Angular zu installieren, haben wir ein Terminalfenster geöffnet und den folgenden Befehl ausgeführt:
+```
+npm install -g @angular/cli
+```
+Als nächstes haben wir die Angular Application installiert mit:
+```
+ng new my-app
+```
+Um diese nun zu starten:
+```
+cd my-app
+ng serve --open
+```
+
 
 
 #### 1.2.1.2 React
