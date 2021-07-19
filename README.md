@@ -20,6 +20,8 @@ Grundlegenden Konzepte die wichtig bei Angular sind:
 
 **Components** sind logische Kapselungen gewünschter Funktionalitäten, die sich an gewünschten Stellen wiederverwenden lassen.
 
+**Services** sind eine einfache Möglichkeit Funktionen für alle Komponenten zugänglich zu machen. (Globalisierte Funktion die man überall verwenden kann)
+
 **Directives** erleichtern das Coden von JavaScript, indem Grundfunktionen wie if-Abzweigungen oder for-Loops mit wenigen Schritten ohne viel Code eingefügt werden können.
 
 **Dependency Injection** stellt einen sog. DI-Container zur Verfügung. Häufig verwen-dete Services (z. B. Datenbankabfragen) lassen sich hierüber kapseln und bei Bedarf in gewünschten Komponenten aufrufen.
@@ -27,21 +29,50 @@ Grundlegenden Konzepte die wichtig bei Angular sind:
 **Fazit:**
 es gibt kaum eine Frontend-Herausforderung, die mit Angular nicht gelöst wer-den kann. Gerade Einsteiger der Webentwicklung sollten jedoch Zeit und Durchhalte-vermögen für den Einstieg mitbringen, dieser wird einem nicht immer leicht gemacht. Dementsprechend findet Angular gerade in großen und Enterprise-Applikationen An-wendung. Auch die Betreuung durch Teams mit einer Vielzahl an Mitwirkenden lässt sich effizient bewerkstelligen.
 
-#### 1.2.1.1 Angular Installation
+#### 1.2.1.2 Angular Installation
 Um Angular zu installieren, haben wir ein Terminalfenster geöffnet und den folgenden Befehl ausgeführt:
 ```
 npm install -g @angular/cli
 ```
 Als nächstes haben wir die Angular Application installiert mit:
 ```
-ng new my-app
+ng new DigitalerEinkaufszettelAngular
 ```
-Um diese nun zu starten:
+Nun fügen wir unsere Komponten hinzu aus der sich am Ende die Webseite zusammensetzen wird:
 ```
-cd my-app
+cd DigitalerEinkaufszettelAngular
+ng g c page-list
+ng g c_ template/template-tobuy
+ng g c _template/template-tobuy-form
+ng g c _template/template-header  
+```
+
+Nun fügen wir einen Service hinzu:
+```
+ng g s _service/data
+```
+
+Nun fügen wir noch custom Interfaces hinzu:
+```
+ng g i _interface/tobuy
+ng g i _interface/eventping
+```
+
+Nun testen wir wieder ob alles funktioniert hat:
+```
 ng serve --open
 ```
 
+#### 1.2.1.3 Angular Vorteile
+* Modularität
+* Speed & Performance
+* Komplexe, webbasierte Anwendungen
+* Frontend Framework
+
+#### 1.2.1.4 Angular Nachteil
+* Nicht für kleine Projekte geeignet
+* Benötigt externe Backend Logik
+* Ersetzt keine Webseite im "üblichen" Sinne
 
 
 #### 1.2.1.2 React
