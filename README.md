@@ -29,6 +29,7 @@ es gibt kaum eine Frontend-Herausforderung, die mit Angular nicht gelöst wer-de
 
 #### 1.2.1.1 Angular Installation
 
+
 #### 1.2.1.2 React
 **React** ist ein Framework entwickelt von Facebook, veröffentlicht im Jahr 2013 und geht vom Grundansatz einen anderen Weg als Angular. React ist von Haus aus schlank, klein und elementar gehalten. Es wird zunächst nur die Grundfunktionalität angeboten, z.B. Components und Properties (zum Handling von Daten). 
 
@@ -52,6 +53,7 @@ Geht man über die elementare Funktionalität von React hinaus, merkt man schnel
 
 
 ### 1.2.2 Backend
+
 #### 1.2.2.1 Spring-Boot
 Spring Boot ist eine „Konvention vor Konfiguration“-Lösung für das Java-Framework Spring, die 2012 veröffentlicht wurde und die Komplexität der Konfiguration neuer Spring-Projekte reduziert. Zu diesem Zweck legt Spring Boot eine Grundkonfiguration inklusive Richtlinien für die Nutzung des Frameworks sowie aller relevanten Drittan-bieter-Bibliotheken fest und gibt damit den Weg vor, um den Einstieg in neue Projekte so mühelos wie möglich zu gestalten. Auf diese Weise lässt sich die Kreation eigen-ständiger, produktionsreifer Applikationen auf Basis von Spring erheblich vereinfa-chen, weshalb der Großteil neuer Spring-Anwendungen konsequenterweise auch auf Spring Boot aufsetzt.
 
@@ -60,19 +62,22 @@ Die Merkmale von Spring Boot lassen sich wie folgt zusammenfassen:
 direktes Einbetten von Webserver-/Container-Anwendungen wie Apache Tomcat oder Jetty möglich, wodurch kein Einsatz von WAR-Dateien (Web Application Archive) erforderlich ist vereinfachte Maven-Konfiguration dank „Starter“-POMs (Project Ob-ject Models) automatische Spring-Konfiguration, wann immer dies möglich ist Bereit-stellung nichtfunktionaler Features wie Metriken oder ausgelagerter Konfigurationen
 
 ### 1.3	Visual Studio Code
+
 Visual Studio Code ist ein kostenloser Quelltext-Editor von Microsoft. Visual Studio Code ist plattformübergreifend für die Betriebssysteme Windows, macOS und Linux verfügbar. Visual Studio Code haben wir verwendet um unsere Applikation zu schreiben.
 
 ### 1.4	Spring Boot Anwendung erstellt
 
+![Erstellung unseres Backend Projekts mit Spring](Bilder/SpringInitializr.png)
 
 ### 1.5	Docker
+
 Docker ist eine Open Source Software welche ursprünglich auf die Containervirtuali-sierung, zur Isolierung von Anwendungen mit Linux ausgerichtet war. Mittels be-stimmten Tools ist sie auch für Windows und MacOS anwendbar. 2 In diesem Bericht wird jedoch ausschließlich über die Verwendung von Docker in einer Linux-Umgebung berichtet.
 
 Ein Docker Container ist eine aktive Instanz eines Docker Images. Ein Image ist ein-schreibgeschütztes, ausführbares Template, welches alle notwendigen Abhängigkei-tenbeinhaltet, um die gewünschte Applikation zu bauen und/oder auszuführen. Der Code, Bibliotheken, Konfigurationsdateien aber auch Software-Plattformen, wie .Net Core sind einige der Beispiele, die ein Image beinhalten kann. Diese Abhängigkeiten werden als Schritte, auch Layers genannt, in ein Dockerfile geschrieben, um sie dem Image hinzuzufügen.
 
 Docker haben wir verwendet, um unsere Postgres Datenbank einzurichten:
-  
+```
 docker run --name postgresdb -p 5432:5432 -e POSTGRES_PASSWORD=password -e POSTGRES_USER=marcel -e POSTGRES_DB=mydb -d postgres:latest
-
+``` 
 
 
