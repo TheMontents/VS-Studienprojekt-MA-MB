@@ -5,6 +5,7 @@ Evaluierung verschiedener Frontend Technologien für Microservices am Beispiel e
 # 1. Einleitung
 
 ## 1.1 Git
+Git ist eine freie Software zur verteilten Versionsverwaltung von Dateien. Als erstes haben wir ein Git Repository erstellt.
 
 ## 1.2 Frameworks
 In dieser Studienarbeit geht es um das Evaluierung verschiedener Frontend Technolo-gien für Microservices am Beispiel einer simplen Spring Boot Anwendung, hierfür haben wir uns für die drei am meisten verbreiteten JavaScript Frontend Frameworks entschieden. Angular, React und Vue.js. Als Backend Framework werden wir Spring-Boot verwenden. Diese Frameworks werden wir nun im Detail betrachten.
