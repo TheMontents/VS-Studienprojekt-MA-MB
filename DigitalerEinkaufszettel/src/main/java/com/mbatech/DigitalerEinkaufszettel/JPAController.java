@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,10 +19,9 @@ public class JPAController {
     private ShoppingListRepository shoppingListRepository;
 
     @GetMapping("/getShoppingList")
-    public String getShoppingList(){
-        List<String> shoppingList = new ArrayList<String>();
-        shoppingListRepository.findAll().forEach(shoppingListEntry -> shoppingList.add(shoppingListEntry.getShoppingListEntry()));
-        return shoppingList.toString();
+    public ResponseEntity<List<ShoppingListEntity>> getShoppingList(){
+        List<ShoppingListEntity> shoppingList = (List<ShoppingListEntity>) shoppingListRepository.findAll();
+        return new ResponseEntity<>(shoppingList, HttpStatus.OK);
     }    
 
     @PostMapping("/addShoppingListEntry/{article}/{amount}/{unit}")
