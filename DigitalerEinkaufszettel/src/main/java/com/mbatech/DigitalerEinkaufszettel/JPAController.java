@@ -19,7 +19,7 @@ public class JPAController {
 
     @GetMapping("/getShoppingList")
     public ResponseEntity<List<ShoppingListEntity>> getShoppingList(){
-        List<ShoppingListEntity> shoppingList = (List<ShoppingListEntity>) shoppingListRepository.findAll();
+        List<ShoppingListEntity> shoppingList = shoppingListRepository.findAll();
         return new ResponseEntity<>(shoppingList, HttpStatus.OK);
     }    
 
