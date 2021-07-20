@@ -18,7 +18,20 @@ public class ShoppingListEntity {
         this.unit = unit;
     }
 
-    public String getShoppingListEntry(){
+    public String getArticle(){
+        return this.article;
+    }
+
+    public int getAmount(){
+        return this.amount;
+    }
+
+    public String getUnit(){
+        return this.unit;
+    }
+
+    @Override
+    public String toString(){
         return this.article + " " + this.amount + " " + this.unit;
     }
 }
