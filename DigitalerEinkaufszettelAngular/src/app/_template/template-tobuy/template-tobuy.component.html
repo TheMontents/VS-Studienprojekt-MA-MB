@@ -1,17 +1,17 @@
-<div class="tobuy">
+<div class="tobuy" [class.done]= "toBuy$.status">
     <div class="tobuy-content">
         <div class="handle">
             <img src="./assets/svg/drag.svg">
         </div>
         <div class="tobuy-content-check">
-            <img  src="./assets/svg/checkbox-empty.svg">
-            <img  src="./assets/svg/checkbox-done.svg">
+            <img *ngIf="!toBuy$.status" (click)="changeCheck($event)" src="./assets/svg/checkbox-empty.svg">
+            <img *ngIf="toBuy$.status"(click)="changeCheck($event)" src="./assets/svg/checkbox-done.svg">
         </div>
         <div class="tobuy-content-titel">
-            <input  type="text"  placeholder="Name des ToBuy-Punktes" >
-        </div>
-        <div class="delete">
-            <span>Löschen</span>
+            <input (blur)="changeLabel($event)" type="text" [(ngModel)]="toBuy$.label" placeholder="Name des Artikels" >
         </div>
     </div>
+        <div class="delete" (click)="deleteToBuy($event)">
+            <span>Löschen</span>
+        </div>
 </div>

@@ -1,8 +1,8 @@
 <div class="tobuy-form">
     <div class="tobuy-content">
-        <input type="text" placeholder="Name des ToBuy-Punktes" >
+        <input type="text" (keyup.enter)="createToBuy($event)" [(ngModel)]="toBuy$.label" placeholder="Name des Artikels" >
     </div>
-    <div class="create">
+    <div class="create" (click)="createToBuy($event)">
         <span>Erstellen</span>
     </div>
 </div>

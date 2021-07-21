@@ -1,16 +1,19 @@
 <app-template-header></app-template-header>
 <div class="list-view">
-    <h4>Noch zu kaufende Artikel <span>(2)</span></h4>
-    <div class="tobuy-elements">
+    <h4 (click)="toBuyShow=!toBuyShow">Noch zu kaufende Artikel <span>(2)</span></h4>
+    <div *ngIf="toBuyShow" class="tobuy-elements">
         <app-template-tobuy></app-template-tobuy>
         <app-template-tobuy></app-template-tobuy>
         <app-template-tobuy></app-template-tobuy>
         <app-template-tobuy></app-template-tobuy>
         <app-template-tobuy></app-template-tobuy>
     </div>
-    <app-template-tobuy-form></app-template-tobuy-form>
-    <h4>Bereits vorhandene Artikel <span>(2)</span></h4>
-    <div class="tobuy-elements">
+    <app-template-tobuy-form *ngIf="toBuyShow"></app-template-tobuy-form>
+    <h4 (click)="toBuyDoneShow=!toBuyDoneShow">Bereits vorhandene Artikel <span>(2)</span></h4>
+    <div *ngIf="toBuyDoneShow" class="tobuy-elements">
+        <app-template-tobuy></app-template-tobuy>
+        <app-template-tobuy></app-template-tobuy>
+        <app-template-tobuy></app-template-tobuy>
         
     </div>
 </div>

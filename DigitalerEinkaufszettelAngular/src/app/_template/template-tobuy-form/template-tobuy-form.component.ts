@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Tobuy } from 'src/app/_interface/tobuy';
 
 @Component({
   selector: 'app-template-tobuy-form',
@@ -7,9 +8,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TemplateTobuyFormComponent implements OnInit {
 
-  constructor() { }
+  public toBuy$: Tobuy;
+
+  constructor() {
+    this.toBuy$ = {
+      id: undefined,
+      label: undefined,
+      status: false,
+      position: undefined
+    };
+    
+   }
 
   ngOnInit(): void {
   }
+
+  public createToBuy(event?: any): void {
+   
+    this.toBuy$ = {
+      id: undefined,
+      label: undefined,
+      status: false,
+      position: undefined
+    };
+    console.log(this.toBuy$);
+  }
+  
 
 }

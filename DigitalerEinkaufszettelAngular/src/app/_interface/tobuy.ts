@@ -1,5 +1,6 @@
 export interface Tobuy {
-    id: number;
+    id?: number;
     label?: string;
     status: boolean;
+    position?: number;
 }

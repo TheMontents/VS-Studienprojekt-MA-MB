@@ -7,7 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageListComponent implements OnInit {
 
-  constructor() { }
+  public toBuyShow: boolean;
+  public toBuyDoneShow: boolean;
+
+  constructor() {
+    this.toBuyShow = true;
+    this.toBuyDoneShow = false;
+   }
 
   ngOnInit(): void {
   }
