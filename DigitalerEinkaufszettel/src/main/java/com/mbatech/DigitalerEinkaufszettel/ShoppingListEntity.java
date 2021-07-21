@@ -1,37 +1,37 @@
 package com.mbatech.DigitalerEinkaufszettel;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class ShoppingListEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private int articleId;
     private String article;
-    private int amount;
-    private String unit;
 
     public ShoppingListEntity(){}
 
-    public ShoppingListEntity(String article, int amount, String unit){
+    public ShoppingListEntity(String article){
         this.article = article;
-        this.amount = amount;
-        this.unit = unit;
+    }
+
+    public int getArticleId(){
+        return this.articleId;
     }
 
     public String getArticle(){
         return this.article;
     }
 
-    public int getAmount(){
-        return this.amount;
-    }
-
-    public String getUnit(){
-        return this.unit;
+    public void setArticle(String article){
+        this.article = article;
     }
 
     @Override
     public String toString(){
-        return this.article + " " + this.amount + " " + this.unit;
+        return this.articleId + ": " + this.article;
     }
 }

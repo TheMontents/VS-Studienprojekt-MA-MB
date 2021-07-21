@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -25,18 +26,28 @@ public class JPAController {
         return new ResponseEntity<>(shoppingList, HttpStatus.OK);
     }    
 
-    @PostMapping("/addShoppingListEntry/{article}/{amount}/{unit}")
-	public String addShoppingListEntry(@PathVariable String article, @PathVariable int amount, @PathVariable String unit){
-		shoppingListRepository.save(new ShoppingListEntity(article, amount, unit));
+    @PostMapping("/addShoppingListEntry/{article}")
+	public String addShoppingListEntry(@PathVariable String article){
+		shoppingListRepository.save(new ShoppingListEntity(article));
 		return article + " added to the ShoppingList";
 	}
 
-    @DeleteMapping("/deleteShoppingListEntry/{article}") 
-	public String deleteShoppingListEntry(@PathVariable String article){
-        ShoppingListEntity  entryToRemove = shoppingListRepository.findById(article).get();
+    @PutMapping("/updateShoppingListEntry/{oldShoppingListEntryId}/{newShoppingListEntry}")
+	public String updateString(@PathVariable int oldShoppingListEntryId, @PathVariable String newShoppingListEntry){
+        ShoppingListEntity entryToUpdate = shoppingListRepository.findById(oldShoppingListEntryId).get();
+        if(entryToUpdate != null){
+            entryToUpdate.setArticle(newShoppingListEntry);
+            shoppingListRepository.save(entryToUpdate);
+        }
+        return entryToUpdate + " wurde aktualisiert"; 
+	}
+
+    @DeleteMapping("/deleteShoppingListEntry/{articleId}") 
+	public String deleteShoppingListEntry(@PathVariable int articleId){
+        ShoppingListEntity  entryToRemove = shoppingListRepository.findById(articleId).get();
         if(entryToRemove != null){
             shoppingListRepository.delete(entryToRemove);
         }
-		return article + " was deleted";
+		return articleId + " was deleted";
 	}
 }
