@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EventPing } from '../_interface/eventping';
 import { Tobuy } from '../_interface/tobuy';
+import { DataService } from '../_service/data.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-page-list',
@@ -14,32 +16,35 @@ export class PageListComponent implements OnInit {
   public $toBuys: Tobuy[];
   public $toBuysDone: Tobuy[];
 
-  constructor() {
+  constructor(public _dataService: DataService) {
     this.toBuyShow = true;
     this.toBuyDoneShow = false;
-    this.$toBuys = [
-      {
-        id: 0,
-        label: 'test',
-        status: false,
-        position: 1
-      },
-      {
-        id: 1,
-        label: 'test 2',
-        status: false,
-        position: 1
-      }
-
-    ];
+    this.$toBuys = [];
     this.$toBuysDone = [];
+    this.loadData();
    }
 
   ngOnInit(): void {
   }
+
+  public loadData():void {
+    this.$toBuys = [];
+    this.$toBuysDone = [];
+    this._dataService.getToBuy().subscribe((data: Tobuy[]) =>{
+      this.$toBuys = data;
+    }, error =>{
+      console.log(`%cERROR: ${error.message}`, `color: read; font-size: 12px;`);
+    });
+
+  }
+
   public create(event: Tobuy): void{
-    event.position = this.$toBuys.length + 1;
-    this.$toBuys.push(event);
+   this.$toBuys.push(event);
+   this._dataService.postToBuy(event).subscribe((data: Tobuy) =>{
+      this.$toBuys.push(data);
+    }, error =>{
+      console.log(`%cERROR: ${error.message}`, `color: read; font-size: 12px;`);
+    });
   }
 
   public update(event: EventPing): void{
@@ -65,15 +70,15 @@ export class PageListComponent implements OnInit {
     if ('label' === event.label){
       if(event.object.status){
         this.$toBuysDone.forEach((tobuy: Tobuy)=>{
-          if(tobuy.id === event.object.id){
-            tobuy.label = event.object.label;
+          if(tobuy.articleId === event.object.articleId){
+            tobuy.article = event.object.article;
           }
         });
       }else
       {
         this.$toBuys.forEach((tobuy: Tobuy)=>{
-          if(tobuy.id === event.object.id){
-            tobuy.label = event.object.label;
+          if(tobuy.articleId === event.object.articleId){
+            tobuy.article = event.object.article;
           }
         });
       

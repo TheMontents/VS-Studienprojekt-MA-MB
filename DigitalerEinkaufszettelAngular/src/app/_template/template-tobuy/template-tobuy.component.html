@@ -8,7 +8,7 @@
             <img *ngIf="toBuy$.status"(click)="changeCheck($event)" src="./assets/svg/checkbox-done.svg">
         </div>
         <div class="tobuy-content-titel">
-            <input (blur)="changeLabel($event)" type="text" [(ngModel)]="toBuy$.label" placeholder="Name des Artikels" >
+            <input (blur)="changeLabel($event)" type="text" [(ngModel)]="toBuy$.article" placeholder="Name des Artikels" >
         </div>
     </div>
         <div class="delete" (click)="deleteToBuy($event)">

@@ -14,10 +14,10 @@ export class TemplateTobuyComponent implements OnInit {
 
   constructor() {
     this.toBuy$ = {
-      id: 1,
-      label: "Hallo",
+      articleId: 1,
+      article: "Hallo",
       status: false,
-      position: 1
+      
     };
    }
 

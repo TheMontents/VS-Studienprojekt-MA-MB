@@ -14,10 +14,8 @@ export class TemplateTobuyFormComponent implements OnInit {
 
   constructor() {
     this.toBuy$ = {
-      id: undefined,
-      label: undefined,
+      article: undefined,
       status: false,
-      position: undefined
     };
     
    }
@@ -28,12 +26,9 @@ export class TemplateTobuyFormComponent implements OnInit {
   public createToBuy(event?: any): void {
    this.ping.emit(this.toBuy$);
     this.toBuy$ = {
-      id: undefined,
-      label: undefined,
+      article: undefined,
       status: false,
-      position: undefined
     };
-    console.log(this.toBuy$);
   }
   
 

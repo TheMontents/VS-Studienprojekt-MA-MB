@@ -11,6 +11,7 @@ public class ShoppingListEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int articleId;
     private String article;
+    private boolean status;
 
     public ShoppingListEntity(){}
 
@@ -28,6 +29,14 @@ public class ShoppingListEntity {
 
     public void setArticle(String article){
         this.article = article;
+    }
+
+    public Boolean getStatus(){
+        return this.status;
+    }
+
+    public void setArticle(Boolean status){
+        this.status = status;
     }
 
     @Override
