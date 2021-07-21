@@ -17,32 +17,41 @@ class ShoppingListComponent extends React.Component{
         });
     }
 
+    deleteArticle(articleId){
+       ShoppingListService.deleteShoppingListEntry(articleId).then((response) =>{
+           if(response.data != null){
+            this.setState({
+                shoppingList: this.state.shoppingList.filter(shoppingListEntry => shoppingListEntry.articleId !== articleId)
+               });
+           }
+       });
+    }
+
     render (){
         return(
             <div>
-                <h1 className = "text-center"> Einkaufszettel</h1>
-                <table className = "table table-striped">
-                    <thead>
-                        <tr>
-
-                            <td>Artikel</td>
-                            <td>Menge</td>
-                            <td>Einheit</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            this.state.shoppingList.map(
-                                shoppingList => 
-                                <tr key = {shoppingList.article}>
-                                     <td> {shoppingList.article}</td>   
-                                     <td> {shoppingList.amount}</td>   
-                                     <td> {shoppingList.unit}</td>     
-                                </tr>
-                            )
-                        }
-                    </tbody>
-                </table>
+                <div>
+                    <h1 className = "text-center"> Einkaufszettel</h1>
+                    <table className = "table table-striped">
+                        <thead>
+                            <tr>
+                                <td>Artikel</td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                this.state.shoppingList.map(
+                                    shoppingList => 
+                                    <tr key = {shoppingList.articleId}>
+                                        <td> {shoppingList.article}</td> 
+                                        <td><button onClick={() => this.deleteArticle(shoppingList.articleId)}>gekauft</button></td>     
+                                    </tr>
+                                )
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         )
     }

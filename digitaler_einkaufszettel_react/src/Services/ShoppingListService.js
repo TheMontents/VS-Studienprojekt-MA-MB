@@ -1,11 +1,16 @@
 import axios from 'axios'
 
-const SHOPPINGLIST_REST_API_URL = "http://localhost:8080/getShoppingList";
+const GET_SHOPPINGLIST_REST_API_URL = "http://localhost:8080/getShoppingList";
+const DELETE_SHOPPINGLISTENTRY_REST_API_URL = "http://localhost:8080/deleteShoppingListEntry/"
 
 class ShoppingListService{
   getShoppingList(){
-    return axios.get(SHOPPINGLIST_REST_API_URL);
-  }
+    return axios.get(GET_SHOPPINGLIST_REST_API_URL);
+  };
+
+  deleteShoppingListEntry = (articleId) => {
+    return axios.delete(DELETE_SHOPPINGLISTENTRY_REST_API_URL + articleId);
+  };
 }
 
 export default new ShoppingListService();
