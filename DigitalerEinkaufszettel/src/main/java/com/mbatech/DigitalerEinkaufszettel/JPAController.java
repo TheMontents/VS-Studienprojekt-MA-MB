@@ -28,19 +28,20 @@ public class JPAController {
     }    
 
     @PostMapping("/addShoppingListEntry/{article}")
-	public String addShoppingListEntry(@PathVariable String article){
-		shoppingListRepository.save(new ShoppingListEntity(article));
-		return article + " added to the ShoppingList";
+	public ResponseEntity<ShoppingListEntity> addShoppingListEntry(@PathVariable String article){
+        ShoppingListEntity shoppingListEntityToAdd = new ShoppingListEntity(article);
+		shoppingListRepository.save(shoppingListEntityToAdd);
+		return new ResponseEntity<>(shoppingListEntityToAdd, HttpStatus.OK);
 	}
 
     @PutMapping("/updateShoppingListEntry/{oldShoppingListEntryId}/{newShoppingListEntry}")
-	public String updateString(@PathVariable int oldShoppingListEntryId, @PathVariable String newShoppingListEntry){
+	public ResponseEntity<ShoppingListEntity> updateString(@PathVariable int oldShoppingListEntryId, @PathVariable String newShoppingListEntry){
         ShoppingListEntity entryToUpdate = shoppingListRepository.findById(oldShoppingListEntryId).get();
         if(entryToUpdate != null){
             entryToUpdate.setArticle(newShoppingListEntry);
             shoppingListRepository.save(entryToUpdate);
         }
-        return entryToUpdate + " wurde aktualisiert"; 
+        return new ResponseEntity<>(entryToUpdate, HttpStatus.OK); 
 	}
 
     @DeleteMapping("/deleteShoppingListEntry/{articleId}") 
