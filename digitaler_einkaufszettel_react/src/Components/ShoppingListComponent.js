@@ -36,8 +36,8 @@ class ShoppingListComponent extends React.Component{
 
     handleSubmit(event){
         ShoppingListService.postShoppingListEntry(this.state.newShoppingListEntry).then((response) => {
-            console.log(response.data);
             this.setState({shoppingList: this.state.shoppingList.concat(response.data)});
+            this.setState({newShoppingListEntry: ""});
         });
         event.preventDefault();
     }
