@@ -6,11 +6,13 @@ class ShoppingListComponent extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            shoppingList:[]
-        }
+            shoppingList:[],
+            newShoppingListEntry: ""
+        };
+
+        this.handleInputChange = this.handleInputChange.bind(this);
     }
-
-
+    
     componentDidMount(){
         ShoppingListService.getShoppingList().then((response) => {
             this.setState({ shoppingList: response.data})
@@ -27,9 +29,19 @@ class ShoppingListComponent extends React.Component{
        });
     }
 
+    handleInputChange(event){
+        this.setState({newShoppingListEntry: event.target.value});
+    }
+
     render (){
         return(
             <div>
+                <div>
+                    <form>
+                        <input type="text" placeholder="Einkaufszettel Eintrag" value={this.state.newShoppingListEntry} onChange={this.handleInputChange}/>
+                        <button type="submit" >Hinzufügen</button>
+                    </form>
+                </div>  
                 <div>
                     <h1 className = "text-center"> Einkaufszettel</h1>
                     <table className = "table table-striped">

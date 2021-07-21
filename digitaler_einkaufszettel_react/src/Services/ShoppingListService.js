@@ -11,6 +11,10 @@ class ShoppingListService{
   deleteShoppingListEntry = (articleId) => {
     return axios.delete(DELETE_SHOPPINGLISTENTRY_REST_API_URL + articleId);
   };
+
+  postShoppingListEntry = (article) => {
+    
+  }
 }
 
 export default new ShoppingListService();
