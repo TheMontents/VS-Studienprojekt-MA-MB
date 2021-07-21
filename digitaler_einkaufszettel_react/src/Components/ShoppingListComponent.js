@@ -11,6 +11,7 @@ class ShoppingListComponent extends React.Component{
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
     
     componentDidMount(){
@@ -20,24 +21,32 @@ class ShoppingListComponent extends React.Component{
     }
 
     deleteArticle(articleId){
-       ShoppingListService.deleteShoppingListEntry(articleId).then((response) =>{
+        ShoppingListService.deleteShoppingListEntry(articleId).then((response) => {
            if(response.data != null){
-            this.setState({
+                this.setState({
                 shoppingList: this.state.shoppingList.filter(shoppingListEntry => shoppingListEntry.articleId !== articleId)
-               });
-           }
-       });
+                });
+            } 
+        });
     }
 
     handleInputChange(event){
         this.setState({newShoppingListEntry: event.target.value});
     }
 
+    handleSubmit(event){
+        ShoppingListService.postShoppingListEntry(this.state.newShoppingListEntry).then((response) => {
+            console.log(response.data);
+            this.setState({shoppingList: this.state.shoppingList.concat(response.data)});
+        });
+        event.preventDefault();
+    }
+
     render (){
         return(
             <div>
                 <div>
-                    <form>
+                    <form onSubmit={this.handleSubmit}>
                         <input type="text" placeholder="Einkaufszettel Eintrag" value={this.state.newShoppingListEntry} onChange={this.handleInputChange}/>
                         <button type="submit" >Hinzufügen</button>
                     </form>

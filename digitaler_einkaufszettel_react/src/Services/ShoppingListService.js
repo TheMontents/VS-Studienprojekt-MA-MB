@@ -1,7 +1,9 @@
 import axios from 'axios'
 
 const GET_SHOPPINGLIST_REST_API_URL = "http://localhost:8080/getShoppingList";
-const DELETE_SHOPPINGLISTENTRY_REST_API_URL = "http://localhost:8080/deleteShoppingListEntry/"
+const DELETE_SHOPPINGLISTENTRY_REST_API_URL = "http://localhost:8080/deleteShoppingListEntry/";
+const POST_SHOPPINGLISTENTRY_REST_API_URL = "http://localhost:8080/addShoppingListEntry/";
+
 
 class ShoppingListService{
   getShoppingList(){
@@ -13,7 +15,7 @@ class ShoppingListService{
   };
 
   postShoppingListEntry = (article) => {
-    
+    return axios.post(POST_SHOPPINGLISTENTRY_REST_API_URL + article, article);
   }
 }
 
