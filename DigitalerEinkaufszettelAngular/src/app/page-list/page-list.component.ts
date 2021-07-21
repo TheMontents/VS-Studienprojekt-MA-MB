@@ -39,7 +39,7 @@ export class PageListComponent implements OnInit {
   }
 
   public create(event: Tobuy): void{
-   this.$toBuys.push(event);
+   
    this._dataService.postToBuy(event).subscribe((data: Tobuy) =>{
       this.$toBuys.push(data);
     }, error =>{

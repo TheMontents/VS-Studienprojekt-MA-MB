@@ -34,4 +34,14 @@ export class DataService {
     return this._http.post<Tobuy>(`${this.serverUrl}/addShoppingListEntry/${object.article}`,object);
   }
 
+  public deleteToBuy(object: Tobuy): Observable<Tobuy>
+  {
+    const httpOptions = {
+      headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+      })
+  };
+    return this._http.delete<Tobuy>(`${this.serverUrl}/deleteShoppingListEntry/${object.articleId}`);
+  }
+
 }
