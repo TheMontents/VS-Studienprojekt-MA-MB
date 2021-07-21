@@ -44,11 +44,11 @@ public class JPAController {
 	}
 
     @DeleteMapping("/deleteShoppingListEntry/{articleId}") 
-	public String deleteShoppingListEntry(@PathVariable int articleId){
+	public ResponseEntity<ShoppingListEntity> deleteShoppingListEntry(@PathVariable int articleId){
         ShoppingListEntity  entryToRemove = shoppingListRepository.findById(articleId).get();
         if(entryToRemove != null){
             shoppingListRepository.delete(entryToRemove);
         }
-		return articleId + " was deleted";
+		return new ResponseEntity<>(entryToRemove, HttpStatus.OK);
 	}
 }
