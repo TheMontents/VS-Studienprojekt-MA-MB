@@ -1,19 +1,15 @@
 <app-template-header></app-template-header>
 <div class="list-view">
-    <h4 (click)="toBuyShow=!toBuyShow">Noch zu kaufende Artikel <span>(2)</span></h4>
+    <h4 (click)="toBuyShow=!toBuyShow">Noch zu kaufende Artikel <span>({{$toBuys.length}})</span></h4>
     <div *ngIf="toBuyShow" class="tobuy-elements">
-        <app-template-tobuy></app-template-tobuy>
-        <app-template-tobuy></app-template-tobuy>
-        <app-template-tobuy></app-template-tobuy>
-        <app-template-tobuy></app-template-tobuy>
-        <app-template-tobuy></app-template-tobuy>
+        <app-template-tobuy (ping)= "update($event)" [toBuy$]= "toBuy" *ngFor="let toBuy of $toBuys"></app-template-tobuy>
+ 
     </div>
-    <app-template-tobuy-form *ngIf="toBuyShow"></app-template-tobuy-form>
-    <h4 (click)="toBuyDoneShow=!toBuyDoneShow">Bereits vorhandene Artikel <span>(2)</span></h4>
+    <app-template-tobuy-form (ping)="create($event)" *ngIf="toBuyShow"></app-template-tobuy-form>
+    <h4 (click)="toBuyDoneShow=!toBuyDoneShow">Bereits vorhandene Artikel <span>({{$toBuysDone.length}})</span></h4>
     <div *ngIf="toBuyDoneShow" class="tobuy-elements">
-        <app-template-tobuy></app-template-tobuy>
-        <app-template-tobuy></app-template-tobuy>
-        <app-template-tobuy></app-template-tobuy>
+        <app-template-tobuy (ping)= "update($event)" [toBuy$]= "toBuy" *ngFor="let toBuy of $toBuysDone"></app-template-tobuy>
+     
         
     </div>
 </div>

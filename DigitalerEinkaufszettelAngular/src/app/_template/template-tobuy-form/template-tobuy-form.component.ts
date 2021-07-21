@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { EventPing } from 'src/app/_interface/eventping';
 import { Tobuy } from 'src/app/_interface/tobuy';
 
 @Component({
@@ -9,6 +10,7 @@ import { Tobuy } from 'src/app/_interface/tobuy';
 export class TemplateTobuyFormComponent implements OnInit {
 
   public toBuy$: Tobuy;
+  @Output() ping: EventEmitter<Tobuy> = new EventEmitter<Tobuy>();
 
   constructor() {
     this.toBuy$ = {
@@ -24,7 +26,7 @@ export class TemplateTobuyFormComponent implements OnInit {
   }
 
   public createToBuy(event?: any): void {
-   
+   this.ping.emit(this.toBuy$);
     this.toBuy$ = {
       id: undefined,
       label: undefined,
