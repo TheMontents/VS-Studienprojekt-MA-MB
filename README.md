@@ -85,6 +85,11 @@ Die Entwickler haben zum Coden die Sprache JSX erfunden. Die Idee ist vergleichb
 
 Geht man über die elementare Funktionalität von React hinaus, merkt man schnell einen entscheidenden Unterschied zu Angular. Bei React ist man weit mehr gefordert, auf Erweiterungen zu setzen, die von der Community gepflegt werden. Das führt auch dazu, dass es oft nicht den einen Weg zum Ziel gibt. Man ist herausgefordert, seinen eigenen Weg und seine bevorzugten Tools zu finden. 
 
+Die API Anbindung:
+
+Für die Anbindung des React Frontends an die REST API wurde in der Datei ShoppingListService.js die Klasse ShoppingListService erstellt diese enthalten die jeweiligen Funktionen für einen GET POST oder DELETE Request an die API. Hierfür wurde der HTTP-Client Axios installert. 
+Die Daten aus der Antwort werden dann die Daten im ShoppingListComponent in den state eingefügt bzw. entfernt und so auf der Seite angezeigt.   
+
 **Zwischenfazit Angular vs. React:** an Funktionsumfang nehmen sich beide Frameworks kaum etwas. Beide werden von Großkonzernen betreut und behaupten sich seit vielen Jahren erfolgreich am Markt. Auch die Communities sind entsprechend etabliert, so dass Hilfe nie weit entfernt ist. Wichtigster Unterschied ist der monolithische Ansatz von Angular (fast alles aus einer Hand und ein Weg zum Ziel) gegenüber dem Community-zentrierten Weg von React. Eine Auswahl zwischen beiden ist eine Frage des persönlichen Geschmacks und der eigenen Herangehensweise an Coding-Aufgaben.
 
 #### 1.2.1.3 Vue.js
