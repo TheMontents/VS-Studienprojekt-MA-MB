@@ -87,8 +87,6 @@ Geht man über die elementare Funktionalität von React hinaus, merkt man schnel
 
 **Zwischenfazit Angular vs. React:** an Funktionsumfang nehmen sich beide Frameworks kaum etwas. Beide werden von Großkonzernen betreut und behaupten sich seit vielen Jahren erfolgreich am Markt. Auch die Communities sind entsprechend etabliert, so dass Hilfe nie weit entfernt ist. Wichtigster Unterschied ist der monolithische Ansatz von Angular (fast alles aus einer Hand und ein Weg zum Ziel) gegenüber dem Community-zentrierten Weg von React. Eine Auswahl zwischen beiden ist eine Frage des persönlichen Geschmacks und der eigenen Herangehensweise an Coding-Aufgaben.
 
-
-
 #### 1.2.1.3 Vue.js
 Ähnlich zu Angular handelt es sich hier um eine monolithische Lösung, die dem Entwickler alle nötigen Tools für eine umfassende Applikation anbietet. Auf Community-Tools kann zurückgegriffen werden, das ist aber nicht immer nötig (im Gegensatz zu React).
 
@@ -96,7 +94,20 @@ Geht man über die elementare Funktionalität von React hinaus, merkt man schnel
 
 **Zusammenfassend** können wir sagen, dass mit Vue.js eine Alternative zu großen Konkurrenten entstanden ist, die sich gerade für kleine und mittlere Projekte lohnt. So mancher Overhead, die in Angular manchmal zu tragen sind, lassen sich mit Vue.js elegant und einfach vermeiden. Für sehr Enterprise-Anwendungen kann das Framework an seine Grenzen stoßen, insbesondere wenn Community-Erweiterungen und Frage-Antwort-Tabellen sind. Hier sind die Älteren im Vorteil.
 
-
+#### 1.2.1.4 Vue.js Installation
+```
+npm install -g @vue/cli
+```
+```
+vue create digitalereinkaufszettelvue
+```
+```
+cd digitalereinkaufszettelvue
+npm run serve
+```
+```
+npm install sass-loader node-sass --save
+```
 ### 1.2.2 Backend
 
 #### 1.2.2.1 Spring-Boot
