@@ -15,7 +15,7 @@ class ShoppingListService{
   };
 
   postShoppingListEntry = (article) => {
-    return axios.post(POST_SHOPPINGLISTENTRY_REST_API_URL + article, article);
+    return axios.post(POST_SHOPPINGLISTENTRY_REST_API_URL + article);
   }
 }
 
