@@ -87,7 +87,6 @@ export default {
           const res = await axios.delete(apiURL + `/deleteShoppingListEntry/${this.tobuys[index].articleId}`);
           console.log(res)
         }
-        
       }
       this.tobuys = this.tobuys.filter(tobuy => !tobuy.completed)
     }
