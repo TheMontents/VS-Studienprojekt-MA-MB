@@ -85,7 +85,23 @@ Die Entwickler haben zum Coden die Sprache JSX erfunden. Die Idee ist vergleichb
 
 Geht man über die elementare Funktionalität von React hinaus, merkt man schnell einen entscheidenden Unterschied zu Angular. Bei React ist man weit mehr gefordert, auf Erweiterungen zu setzen, die von der Community gepflegt werden. Das führt auch dazu, dass es oft nicht den einen Weg zum Ziel gibt. Man ist herausgefordert, seinen eigenen Weg und seine bevorzugten Tools zu finden. 
 
-##### 1.2.1.2.1 Die API Anbindung:
+##### 1.2.1.2.1 Die Installation:
+
+```
+npx create-react-app digitaler-einkaufszettel-react
+```
+Im Projektordner (cd digitaler-einkaufszettel-react):
+
+Installieren von Bootstrap:
+```
+npm install bootstrap
+```
+Installieren von Axios:
+```
+npm install axios
+```
+
+##### 1.2.1.2.2 Die API Anbindung:
 
 Für die Anbindung des React Frontends an die REST API wurde in der Datei ShoppingListService.js die Klasse ShoppingListService erstellt. Diese enthält die jeweiligen Methoden für einen GET, POST oder DELETE Request an die API. Hierfür wurde der HTTP-Client Axios installert. 
 Die Daten aus der Antwort werden dann, wie im folgenden beschrieben im ShoppingListComponent in den State eingefügt bzw. entfernt und so auf der Seite angezeigt.
@@ -105,7 +121,7 @@ class ShoppingListService{
 }
 ```
 
-##### 1.2.1.2.1 Erstellung des React Component:
+##### 1.2.1.2.3 Erstellung des React Component:
 
 Für die Anwendung wurde eine eigene Komponente (ShoppingListComponent) geschrieben. Im Konstruktor der Komponente wird im Status dabei eine Variable shoppingList erstellt, welcher ein leeres Array zugewiesen wird. Außerdem wird die Variable newShoppingListEntry erstellt, welcher ein leerer String zugewiesen wird:
 ```
