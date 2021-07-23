@@ -187,6 +187,11 @@ handleSubmit(event){
 }
 ```
 
+##### 1.2.1.2.4 Dockerfile:
+
+Um ein entsprechendes Dockerimage mit dem React Anwendung zu erstellen wurde ein Dockerfile erstellt.
+
+
 **Zwischenfazit Angular vs. React:** an Funktionsumfang nehmen sich beide Frameworks kaum etwas. Beide werden von Großkonzernen betreut und behaupten sich seit vielen Jahren erfolgreich am Markt. Auch die Communities sind entsprechend etabliert, so dass Hilfe nie weit entfernt ist. Wichtigster Unterschied ist der monolithische Ansatz von Angular (fast alles aus einer Hand und ein Weg zum Ziel) gegenüber dem Community-zentrierten Weg von React. Eine Auswahl zwischen beiden ist eine Frage des persönlichen Geschmacks und der eigenen Herangehensweise an Coding-Aufgaben.
 
 #### 1.2.1.3 Vue.js
