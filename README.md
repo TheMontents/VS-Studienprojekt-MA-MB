@@ -135,7 +135,7 @@ Welche Components und wie man eine Component erstellt wird siehe oben.
 Alle Komponeneten werden in page-list geladen und page-list wird in die APP Komponente geschrieben und von dort an angezeigt.
 
 ##### 1.2.1.2.4 Sonstiges:
-Ebenfalls wurden 2 Interfaces erstellt eins für die Darstellung welche Daten in der Datenbank verwendet werden (tobuy.ts).
+Ebenfalls wurden 2 Interfaces erstellt eins für die Representation der Daten die in der Datenbank verwendet werden (tobuy.ts).
 Das andere Interface ist für die ping Funktionen wenn ein Event getriggert wird. (Eventping.ts).
 
 **Fazit:**
@@ -265,9 +265,7 @@ Um ein entsprechendes Dockerimage mit der React Anwendung zu erstellen wurde ein
 
 Ähnlich React lässt sich Vue.js direkt in eine vorhandene HTML-Seite oder über die Kommandozeile einbinden. Im ersten Ansatz wird die Vue.js-Bibliothek über ein script-Tag eingebunden und richtet das Objekt Vue als globale Variable im Projekt ein. Ab einer mittleren Projektgröße ist es jedoch der üblichere und ratsame Weg, Vue.js über NPM oder die CLI zu starten.
 
-**Zusammenfassend** können wir sagen, dass mit Vue.js eine Alternative zu großen Konkurrenten entstanden ist, die sich gerade für kleine und mittlere Projekte lohnt. So mancher Overhead, die in Angular manchmal zu tragen sind, lassen sich mit Vue.js elegant und einfach vermeiden. Für sehr Enterprise-Anwendungen kann das Framework an seine Grenzen stoßen, insbesondere wenn Community-Erweiterungen und Frage-Antwort-Tabellen sind. Hier sind die Älteren im Vorteil.
-
-#### 1.2.1.4 Vue.js Installation
+##### 1.2.1.3.1 Vue.js Installation
 ```
 npm install -g @vue/cli
 ```
@@ -278,9 +276,93 @@ vue create digitalereinkaufszettelvue
 cd digitalereinkaufszettelvue
 npm run serve
 ```
+Installation für Style: (nicht notwendig kann auch mit css gemacht werden)
 ```
 npm install sass-loader node-sass --save
 ```
+##### 1.2.1.3.2 Die API Anbindung:
+Die Anbindung des Vue Frontends an die REST API wurde in der Datei ToBuyList.vue erstellt. Diese enthält die jeweiligen Methoden für einen GET, POST oder DELETE Request an die API. Hierfür wurde der HTTP-Client Axios installert. 
+Die Daten aus der Datenbank werden in den Async Methoden Created(),addToBuy(),removeToBuy(index,tobuy), geladen oder entfernt auf der Seite angezeigt.
+
+Als erstes wurde der HTTP- CLient Axios importiert und festgelegt was an die App.vie zurück gegeben wird.
+```
+import axios from 'axios';
+
+const apiURL = "http://localhost:8080"
+export default {
+  name: 'tobuy-list',
+ data() {
+     return{
+    newToBuy: '',
+    idForToBuy: 3,
+    filter: 'all',
+    tobuys: []
+  }
+```
+Hier sehen wir nun wie die Daten per GET Methode aus der API in das Frontend geladen werden:
+```
+async created(){
+   try{
+     const res = await axios.get (apiURL + `/getShoppingList`);
+     this.tobuys = res.data;
+   }catch(e)
+   {
+     console.log(e);
+   }
+```
+Das Array tobuys wird mit den Daten aus dem GET request gefüllt und über dieses Array wird im HTML Part der ToBuyList.vue iteriert und den Daten werden angezeigt.
+Ebenfalls wurden 2 Methoden erstellt addToBuy() und removeToBuy(index,tobuy) um einmal aus dem Textfeld nach Eingabe und drücken der Enter-taste die Daten auf die Datenbank zu schreiben und auf der Webseite anzuzeigen und einmal um Artikel aus der Liste einzeln zu löschen.
+Wenn Artikel gekauft wurden kann man diese per Click auf die jeweilige Check-box abhaken, diese werden dann durchgestrichen.
+Wenn mindestens ein Artikel abgehakt ist kann man diesen aus der Liste und der Datenbank mit einem Klick auf den "Clear gekaufte" Button löschen. 
+```
+async clearCompleted() {
+      
+      for (let index = 0; index < this.tobuys.length; index++) {
+        if (this.tobuys[index].completed)
+        {
+          const res = await axios.delete(apiURL + `/deleteShoppingListEntry/${this.tobuys[index].articleId}`);
+          console.log(res)
+        }
+      }
+      this.tobuys = this.tobuys.filter(tobuy => !tobuy.completed)
+    }
+  },
+```
+In der Funktion clearCompleted() wird durch alle gekauften Artikel durch iteriert und dann aus der Datenbank gelöscht, am Schluss dieser Funktion werden alle tobuys mit dem Filter auf alle noch nicht gekauften Artikel gesetzt.
+Es wurde dann noch ein Filter eingebaut um Alle Artikel, Gekaufte und nicht gelöschte und Artikel zum Kaufen gefiltert anzuzeigen.
+(Siehe Code und Funktion tobuysFiltered())
+Ebenfalls wird die Anzahl der noch zu kaufenden Artikel angezeigt. (Siehe remaining().
+```
+computed:{
+     remaining() {
+      return this.tobuys.filter(tobuy => !tobuy.completed).length
+    },
+     anyRemaining() {
+      return this.remaining != 0
+    },
+     tobuysFiltered() {
+      if (this.filter == 'all') {
+        return this.tobuys
+      }
+      else if (this.filter == 'Kaufen') {
+        return this.tobuys.filter(tobuy => !tobuy.completed)
+      }
+      else if (this.filter == 'Gekauft') {
+        return this.tobuys.filter(tobuy => tobuy.completed)
+      }
+      return this.tobuys
+    },
+     showClearCompletedButton() {
+      return this.tobuys.filter(tobuy => tobuy.completed).length > 0
+    },
+
+  }
+```
+**Bedeutung computed:** 
+Manchmal benötigen wir einen Zustand, der von einem anderen Zustand abhängt - in Vue wird dies mit berechneten Eigenschaften der Komponente gehandhabt. Um einen berechneten Wert direkt zu erzeugen, können wir die Methode computed verwenden: Sie nimmt eine Getter-Funktion und gibt ein unveränderliches reaktives Ref-Objekt für den vom Getter zurückgegebenen Wert zurück.
+
+**Zusammenfassend** können wir sagen, dass mit Vue.js eine Alternative zu großen Konkurrenten entstanden ist, die sich gerade für kleine und mittlere Projekte lohnt. So mancher Overhead, die in Angular manchmal zu tragen sind, lassen sich mit Vue.js elegant und einfach vermeiden. Für sehr Enterprise-Anwendungen kann das Framework an seine Grenzen stoßen, insbesondere wenn Community-Erweiterungen und Frage-Antwort-Tabellen sind. Hier sind die Älteren im Vorteil.
+
 ### 1.2.2 Backend
 
 #### 1.2.2.1 Spring-Boot
