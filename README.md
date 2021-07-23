@@ -87,7 +87,7 @@ Geht man über die elementare Funktionalität von React hinaus, merkt man schnel
 
 ##### 1.2.1.2.1 Die API Anbindung:
 
-Für die Anbindung des React Frontends an die REST API wurde in der Datei ShoppingListService.js die Klasse ShoppingListService erstellt. Diese enthält die jeweiligen Methoden für einen GET POST oder DELETE Request an die API. Hierfür wurde der HTTP-Client Axios installert. 
+Für die Anbindung des React Frontends an die REST API wurde in der Datei ShoppingListService.js die Klasse ShoppingListService erstellt. Diese enthält die jeweiligen Methoden für einen GET, POST oder DELETE Request an die API. Hierfür wurde der HTTP-Client Axios installert. 
 Die Daten aus der Antwort werden dann, wie im folgenden beschrieben im ShoppingListComponent in den State eingefügt bzw. entfernt und so auf der Seite angezeigt.
 ```
 class ShoppingListService{
@@ -170,8 +170,6 @@ handleSubmit(event){
    event.preventDefault();
 }
 ```
-
-  
 
 **Zwischenfazit Angular vs. React:** an Funktionsumfang nehmen sich beide Frameworks kaum etwas. Beide werden von Großkonzernen betreut und behaupten sich seit vielen Jahren erfolgreich am Markt. Auch die Communities sind entsprechend etabliert, so dass Hilfe nie weit entfernt ist. Wichtigster Unterschied ist der monolithische Ansatz von Angular (fast alles aus einer Hand und ein Weg zum Ziel) gegenüber dem Community-zentrierten Weg von React. Eine Auswahl zwischen beiden ist eine Frage des persönlichen Geschmacks und der eigenen Herangehensweise an Coding-Aufgaben.
 
