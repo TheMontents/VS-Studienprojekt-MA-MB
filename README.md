@@ -26,8 +26,6 @@ Grundlegenden Konzepte die wichtig bei Angular sind:
 
 **Dependency Injection** stellt einen sog. DI-Container zur Verfügung. Häufig verwendete Services (z. B. Datenbankabfragen) lassen sich hierüber kapseln und bei Bedarf in gewünschten Komponenten aufrufen.
 
-**Fazit:**
-es gibt kaum eine Frontend-Herausforderung, die mit Angular nicht gelöst werden kann. Gerade Einsteiger der Webentwicklung sollten jedoch Zeit und Durchhaltevermögen für den Einstieg mitbringen, dieser wird einem nicht immer leicht gemacht. Dementsprechend findet Angular gerade in großen und Enterprise-Applikationen Anwendung. Auch die Betreuung durch Teams mit einer Vielzahl an Mitwirkenden lässt sich effizient bewerkstelligen.
 
 #### 1.2.1.2 Angular Installation
 Um Angular zu installieren, haben wir ein Terminalfenster geöffnet und den folgenden Befehl ausgeführt:
@@ -75,14 +73,9 @@ ng serve --open
 * Ersetzt keine Webseite im "üblichen" Sinne
 
 ##### 1.2.1.2.3 Die API Anbindung:
-Für die Anbindung des Angular Frontends an die REST API wurde in der Datei data.service.ts mit dem Observabel und einem HTTP Client in den Methoden getToBuy, postToBuy und deleteToBuy die GET, POST oder DELETE Request an die API geschickt. Die Datei data.service.ts am Anfang hinzufügt und dient nur zur Anbindung der API.
+Für die Anbindung des Angular Frontends an die REST API wurde in der Datei data.service.ts mit dem Observable und einem HTTP Client in den Methoden getToBuy, postToBuy und deleteToBuy die GET, POST oder DELETE Request an die API geschickt. Die Datei data.service.ts am Anfang hinzufügt und dient nur zur Anbindung der API.
 Anbei befindet sich der abgespeckte Code nur für den GET Request:
 ```
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Tobuy } from '../_interface/tobuy';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -127,6 +120,26 @@ Die app-template-tobuy wird dann so oft wie es Artikel gibt Aufgrund der die tem
 Das heißt es wird pro Artikel eine komplett neue und freistehende template-tobuy.componenent.html mit den Daten gefüllt und in die page-list.component.html geschrieben.
 
 ##### 1.2.1.2.3 Die verschiedene Components:
+In der Angular App DigitalerEinkaufszettelAngular gibt es verschieden Components, jeweils pro Component gibt es eine HTML zum anzeigen, eine Typescript für die Implementierung und eine Typescript Datei zum Testen.
+Welche Components und wie man eine Component erstellt wird siehe oben.
+###### Beschreibung der Components:
+1. page-list -> Komponente für die eigentliche Oberfläche
+2. template-tobuy -> Kompenente für die Artikel
+3. template-tobuy-form -> Komponente für die Anzeige der Artikel
+4. ng template-header -> Komponente für den Header 
+```
+<header>
+    <h1>Fügen<br><span>Sie Ihre</span><br>Artikel hinzu</h1>
+</header>
+```
+Alle Komponeneten werden in page-list geladen und page-list wird in die APP Komponente geschrieben und von dort an angezeigt.
+
+##### 1.2.1.2.4 Sonstiges:
+Ebenfalls wurden 2 Interfaces erstellt eins für die Darstellung welche Daten in der Datenbank verwendet werden (tobuy.ts).
+Das andere Interface ist für die ping Funktionen wenn ein Event getriggert wird. (Eventping.ts).
+
+**Fazit:**
+es gibt kaum eine Frontend-Herausforderung, die mit Angular nicht gelöst werden kann. Gerade Einsteiger der Webentwicklung sollten jedoch Zeit und Durchhaltevermögen für den Einstieg mitbringen, dieser wird einem nicht immer leicht gemacht. Dementsprechend findet Angular gerade in großen und Enterprise-Applikationen Anwendung. Auch die Betreuung durch Teams mit einer Vielzahl an Mitwirkenden lässt sich effizient bewerkstelligen.
 
 #### 1.2.1.2 React
 **React** ist ein Framework entwickelt von Facebook, veröffentlicht im Jahr 2013 und geht vom Grundansatz einen anderen Weg als Angular. React ist von Haus aus schlank, klein und elementar gehalten. Es wird zunächst nur die Grundfunktionalität angeboten, z.B. Components und Properties (zum Handling von Daten). 
