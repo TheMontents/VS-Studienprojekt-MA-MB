@@ -74,6 +74,59 @@ ng serve --open
 * Benötigt externe Backend Logik
 * Ersetzt keine Webseite im "üblichen" Sinne
 
+##### 1.2.1.2.3 Die API Anbindung:
+Für die Anbindung des Angular Frontends an die REST API wurde in der Datei data.service.ts mit dem Observabel und einem HTTP Client in den Methoden getToBuy, postToBuy und deleteToBuy die GET, POST oder DELETE Request an die API geschickt. Die Datei data.service.ts am Anfang hinzufügt und dient nur zur Anbindung der API.
+Anbei befindet sich der abgespeckte Code nur für den GET Request:
+```
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Tobuy } from '../_interface/tobuy';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class DataService {
+
+  private serverUrl = 'http://localhost:8080';
+
+  constructor(
+    private _http: HttpClient
+  ) { }
+
+  public getToBuy(): Observable<Tobuy[]>
+  {
+    const httpOptions = {
+      headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+      })
+  };
+    return this._http.get<Tobuy[]>(`${this.serverUrl}/getShoppingList`);
+  }
+
+}
+```
+In der page-list.component.ts sieht man nun den Aufruf dieser getToBuy Funktion und die Zuweisen in das Array:
+```
+public loadData():void {
+    this.$toBuys = [];
+    this.$toBuysDone = [];
+    this._dataService.getToBuy().subscribe((data: Tobuy[]) =>{
+      this.$toBuys = data;
+    }, error =>{
+      console.log(`%cERROR: ${error.message}`, `color: read; font-size: 12px;`);
+    });
+
+  }
+``` 
+In der page-list.component.html sieht man dann wie durch das Array iteriert wird:
+```
+ <app-template-tobuy (ping)= "update($event)" [toBuy$]= "toBuy" *ngFor="let toBuy of $toBuys"></app-template-tobuy>   
+``` 
+Die app-template-tobuy wird dann so oft wie es Artikel gibt Aufgrund der die template-tobuy.componenent.html erstellt.
+Das heißt es wird pro Artikel eine komplett neue und freistehende template-tobuy.componenent.html mit den Daten gefüllt und in die page-list.component.html geschrieben.
+
+##### 1.2.1.2.3 Die verschiedene Components:
 
 #### 1.2.1.2 React
 **React** ist ein Framework entwickelt von Facebook, veröffentlicht im Jahr 2013 und geht vom Grundansatz einen anderen Weg als Angular. React ist von Haus aus schlank, klein und elementar gehalten. Es wird zunächst nur die Grundfunktionalität angeboten, z.B. Components und Properties (zum Handling von Daten). 
