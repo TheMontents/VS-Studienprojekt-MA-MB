@@ -7,10 +7,9 @@
           <input type="checkbox" v-model="tobuy.completed">
       </div>
       <div class="tobuy-item-label" :class="{ completed : tobuy.completed}">
-          
         {{tobuy.article}}
       </div>
-    <div class="remove-item" @click="removeToBuy(index)">
+    <div class="remove-item" @click="removeToBuy(index,tobuy)">
         &times;
     </div>
   </div>
@@ -29,7 +28,7 @@
 
       <div>
         <transition name="fade">
-        <button v-if="showClearCompletedButton" @click="clearCompleted">Clear Completed</button>
+        <button v-if="showClearCompletedButton" @click="clearCompleted()">Clear Completed</button>
         </transition>
       </div>
 
@@ -38,6 +37,9 @@
 </template>
 
 <script>
+import axios from 'axios';
+
+const apiURL = "http://localhost:8080"
 export default {
   name: 'tobuy-list',
  data() {
@@ -45,42 +47,48 @@ export default {
     newToBuy: '',
     idForToBuy: 3,
     filter: 'all',
-    tobuys: [
-        {
-            'articleId': 1,
-            'article': '500g iwas',
-            'status': false
-        },
-        {
-            'articleId': 2,
-            'article': '200g iwas',
-            'status': false
-        }
-    ]
-     
+    tobuys: []
   }
-  
+ },
+ async created(){
+   try{
+     const res = await axios.get (apiURL + `/getShoppingList`);
+     this.tobuys = res.data;
+   }catch(e)
+   {
+     console.log(e);
+   }
  },
   methods: {
-      addToBuy() {
+      async addToBuy() {
           if(this.newToBuy.trim().length == 0){
               return
           }
-          this.tobuys.push({
-              articleId: this.idForToBuy,
-              article: this.newToBuy,
-              status: false,
-          })
-          this.newToBuy = ''
-          this.idForToBuy++
+          const res = await axios.post(apiURL + `/addShoppingListEntry/${this.newToBuy}`,  {article: this.newToBuy});
+
+          this.tobuys = [...this.tobuys, res.data];
+           this.newToBuy = ''
+         
       },
-      removeToBuy(index){
+      async removeToBuy(index,tobuy){
+      const res = await axios.delete(apiURL + `/deleteShoppingListEntry/${tobuy.articleId}`);
       this.tobuys.splice(index,1);
+      return res;
+
       },
       checkAllTobuys() {
       this.tobuys.forEach((tobuy) => tobuy.completed = event.target.checked)
     },
-      clearCompleted() {
+      async clearCompleted() {
+      
+      for (let index = 0; index < this.tobuys.length; index++) {
+        if (this.tobuys[index].completed)
+        {
+          const res = await axios.delete(apiURL + `/deleteShoppingListEntry/${this.tobuys[index].articleId}`);
+          console.log(res)
+        }
+        
+      }
       this.tobuys = this.tobuys.filter(tobuy => !tobuy.completed)
     }
   },
