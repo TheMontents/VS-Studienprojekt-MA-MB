@@ -87,14 +87,14 @@ Geht man über die elementare Funktionalität von React hinaus, merkt man schnel
 
 ##### 1.2.1.2.1 Erstellung des React Component:
 
-Für die Anwendung wurde eine eigene Komponente (ShoppingListComponent) geschrieben. Im Konstruktor der Komponente wird dabei eine Variable shoppingList welche ein leeres Array zugewiesen wird und mit der Variable newShoppingListEntry, welcher ein leerer String zugewiesen wird initial erstellt:
+Für die Anwendung wurde eine eigene Komponente (ShoppingListComponent) geschrieben. Im Konstruktor der Komponente wird im Status dabei eine Variable shoppingList erstellt, welcher ein leeres Array zugewiesen wird. Außerdem wird die Variable newShoppingListEntry erstellt, welcher ein leerer String zugewiesen wird:
 ```
 this.state = {
             shoppingList:[],
             newShoppingListEntry: ""
 };
 ```
-Wurde die Komponente erfolgreich in das DOM gerendert so wird die componentDidMout() Methode aufgerufen. Hier wird die Methode getShoppingList() des ShoppingListService aufgerufen welche den GET Request an die API sendet. Die Daten aus der Antwort werden dann in die Variable shoppingList des Status der Komponente zugewiesen:
+Wurde die Komponente erfolgreich in das DOM gerendert so wird die componentDidMout() Methode aufgerufen. Hier wird die Methode getShoppingList() des ShoppingListService aufgerufen welche den GET Request an die API sendet. Die Daten aus der Antwort werden dann der Variable shoppingList des Status der Komponente zugewiesen:
 ```
 componentDidMount(){
   ShoppingListService.getShoppingList().then((response) => {
@@ -102,7 +102,48 @@ componentDidMount(){
   });
 }
 ```
-Mithilfe der map() Methode lassen sich nun 
+Mithilfe der map() Methode lässt sich nun für jedes der Elemente des shoppingList Array im Status ein eigener Tabelleneintrag in der Rückgabe der render() Methode erstellen. Hierbei wird jeder neuen Tabellenzeile ein eigener Schlüssel (Key), in unserem Fall die articleId, zugewiesen. Dieser Schlüssel hilft React zu erkennen welche Elemente hinzugefügt, geändert oder gelöscht werden. In jeder Zeile wird dann der entsprechende Artikel sowie ein "gekauft" Button hinzugefügt:
+```
+<tbody>
+   {
+      this.state.shoppingList.map(
+         shoppingList => 
+         <tr key = {shoppingList.articleId}>
+            <td> {shoppingList.article}</td> 
+            <td><button className="btn btn-secondary" onClick={() => this.deleteArticle(shoppingList.articleId)}>gekauft</button></td>     
+         </tr>
+      )
+   }
+</tbody>
+```
+Wie zu sehen ist wird beim betätigen des Buttons die deleteArticle() Methode aufgerufen welcher die entsprechende articleId des zu löschenden Eintrags übergeben wird. In dieser Methode wiederum wird dann die entsprechende Methode des ShoppingList Service aufgerufen welche den DELETE Request an die API sendet. Folgt eine korrekte Atwort der API so wird der entsprechende Eintrag aus dem shoppingList Array des Status gelöscht und somit nicht mehr auf der Seite angezeigt:
+```
+deleteArticle(articleId){
+   ShoppingListService.deleteShoppingListEntry(articleId).then((response) => {
+      if(response.data != null){
+         this.setState({
+            shoppingList: this.state.shoppingList.filter(shoppingListEntry => shoppingListEntry.articleId !== articleId)
+         });
+      } 
+   });
+}
+
+```
+Um einen neuen Artikel der Einkaufsliste hinzufügen zu können wurde ein Formular erstellt.
+```
+<form onSubmit={this.handleSubmit}>
+   <div className="input-group mb-3">
+      <input type="text" className="form-control" placeholder="Einkaufszettel Eintrag" value={this.state.newShoppingListEntry} onChange={this.handleInputChange}/>
+      <div className="input-group-append">
+         <button type="submit" className="btn btn-secondary">Hinzufügen</button>
+      </div>
+   </div>
+</form>
+```
+Dieses Enthält ein Eingabefeld sowie den "Hinzufügen" Button als submit Button. Ändert sich der Inhalt des Input Feldes, so wird die handleInputChange() Methode aufgerufen, in der der geänderte Wert in die Variable newShoppingListEntry des Status geschrieben wird. Wird das Formular mit Betätigung des Buttons abgesendet, so wird die Funktion handleSubmit aufgerufen. Hier wird wiederum die Methode postShoppingListEntry der ShoppingListService Klasse aufgerufen. Dieser wird der aktuelle Wert aus der newShoppingListEntry Variable übergeben und diese schickt wiederum den POST Request an die API. Anschließend wird der neue Eintrag noch in das shoppingList Array hinzugefügt sowie der newShoppingListEntry Variable ein leerer String zugewiesen.
+```
+
+```
 
 
 
