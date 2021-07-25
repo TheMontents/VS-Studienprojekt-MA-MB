@@ -372,13 +372,17 @@ Die Merkmale von Spring Boot lassen sich wie folgt zusammenfassen:
 
 direktes Einbetten von Webserver-/Container-Anwendungen wie Apache Tomcat oder Jetty möglich, wodurch kein Einsatz von WAR-Dateien (Web Application Archive) erforderlich ist vereinfachte Maven-Konfiguration dank „Starter“-POMs (Project Ob-ject Models) automatische Spring-Konfiguration, wann immer dies möglich ist Bereitstellung nichtfunktionaler Features wie Metriken oder ausgelagerter Konfigurationen
 
-### 1.3	Visual Studio Code
-
-Visual Studio Code ist ein kostenloser Quelltext-Editor von Microsoft. Visual Studio Code ist plattformübergreifend für die Betriebssysteme Windows, macOS und Linux verfügbar. Visual Studio Code haben wir verwendet um unsere Applikation zu schreiben.
-
-### 1.4	Spring Boot Anwendung erstellt
+### 1.4	Backend
 
 ![Erstellung unseres Backend Projekts mit Spring](Bilder/SpringInitializr.png)
+
+Die Spring-Boot Anwendung wurde mit den im Bild zu sehenden Einstellungen erstellt. Als Dependencies wurden hierbei Spring Web, Spring Boot Actuator, Spring Data JPA sowie PostgreSQL Driver verwendet. 
+
+In ShoppingListEntity.java wird die ShoppingListEntity definiert, welche auf der Datenbank persistent gespeichert wird. Mit der @Entity Annotation kennzeichnet man, dass die Klasse von JPA persistiert werden soll. Die @Id Annotation kennzeichnet den Primärschlüssel. Mit der @GeneratedValue(strategy = GenerationType.SEQUENCE) Annotation sagt man außerdem, dass die zugehörigen Werte aufsteigend generiert werden sollen. Eine solche Klasse muss außerdem einen Default Konstruktor enthalten. DEs weiteren sind noch ein weiterer Konstruktor sowie benötigte getter und setter Methoden definiert. 
+
+Mit Hilfe des Codes in der ShoppingListRepository.java Datei ist es dank Spring Data JPA nicht mehr notwendig eine Implementierung des Repository Interface zu schreiben, dies übernimmt Spring Data JPA indem eine Implementierung on the fly erstellt wird. JPARepository enthält dabei die vollständige API von CrudRepositry und PagingAndSortingRepository.
+
+
 
 ### 1.5	Docker
 
