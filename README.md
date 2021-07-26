@@ -372,7 +372,7 @@ Die Merkmale von Spring Boot lassen sich wie folgt zusammenfassen:
 
 direktes Einbetten von Webserver-/Container-Anwendungen wie Apache Tomcat oder Jetty möglich, wodurch kein Einsatz von WAR-Dateien (Web Application Archive) erforderlich ist vereinfachte Maven-Konfiguration dank „Starter“-POMs (Project Ob-ject Models) automatische Spring-Konfiguration, wann immer dies möglich ist Bereitstellung nichtfunktionaler Features wie Metriken oder ausgelagerter Konfigurationen
 
-### 1.4	Backend
+### 1.2.2.2	Backend
 
 ![Erstellung unseres Backend Projekts mit Spring](Bilder/SpringInitializr.png)
 
@@ -382,7 +382,7 @@ In ShoppingListEntity.java wird die ShoppingListEntity definiert, welche auf der
 
 Mit Hilfe des Codes in der ShoppingListRepository.java Datei ist es dank Spring Data JPA nicht mehr notwendig eine Implementierung des Repository Interface zu schreiben, dies übernimmt Spring Data JPA indem eine Implementierung on the fly erstellt wird. JPARepository enthält dabei die vollständige API von CrudRepositry und PagingAndSortingRepository.
 
-
+In JPAController.java wird das REST Interface definiert. Mithilfe der @CrossOrigin Annotation werden die API aufrufe von unseren Frontends zugelassen. Die @RestController Annotation ist eine spezialisierte Version der @Controller und der @ResponseBody Annotation. Dabei wird jedes Rückgabeobjekt einer Methode die einen Request behandelt in eine HttpResponse serialisiert wird.
 
 ### 1.5	Docker
 
