@@ -2,10 +2,21 @@
 ## Thema Beschreibung
 Evaluierung verschiedener Frontend Technologien für Microservices am Beispiel einer simplen Spring Boot Anwendung
 
-# 1. Einleitung
+# 1. Starten des Projekts
 
-## 1.1 Git
-Git ist eine freie Software zur verteilten Versionsverwaltung von Dateien. Als erstes haben wir ein Git Repository erstellt.
+Mit der docker-compose.yml Datei lässt sich das Projekt ganz einfach mit einem einzigen Befehl starten:
+```
+docker-compose up -d
+```
+Die Adressen:
+
+REST API: http://localhost:8080
+
+Angular Frontend: http://localhost:4200
+
+React Frontend: http://localhost:3000
+
+Vue Frontend: http://localhost:2000
 
 ## 1.2 Frameworks
 In dieser Studienarbeit geht es um das Evaluierung verschiedener Frontend Technologien für Microservices am Beispiel einer simplen Spring Boot Anwendung, hierfür haben wir uns für die drei am meisten verbreiteten JavaScript Frontend Frameworks entschieden. Angular, React und Vue.js. Als Backend Framework wird dabei Spring-Boot verwenden. Diese Frameworks betrachten wir nun im Detail.
