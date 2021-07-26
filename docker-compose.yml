@@ -1,0 +1,32 @@
+version: "3.9"
+services:
+    backend:
+        container_name: backend
+        image: hasniwutz/backend_digitalereinkaufszettel:v0.1
+        ports:
+            - 8080:8080
+        environment:
+            SPRING_DATASOURCE_URL: jdbc:postgresql://postgresdb:5432/mydb
+        depends_on: 
+            - database
+    database:
+        container_name: postgresdb
+        image: postgres:latest
+        ports:
+        - 5432:5432/tcp
+        environment:
+            POSTGRES_PASSWORD: password
+            POSTGRES_USER: marcel
+            POSTGRES_DB: mydb
+            PGDATA: /var/lib/postgresql/data/pgdata
+    react:
+        container_name: frontend_react
+        image: hasniwutz/react_digitalereinkaufszettel:v0.1
+        ports: 
+            - 3000:3000
+    angular:
+        container_name: frontend_angular
+        image: hasniwutz/angular_digitalereinkaufszettel:v0.1
+        ports:
+            - 4200:80
+            
