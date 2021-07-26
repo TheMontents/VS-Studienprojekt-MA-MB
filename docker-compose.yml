@@ -23,10 +23,14 @@ services:
         container_name: frontend_react
         image: hasniwutz/react_digitalereinkaufszettel:v0.1
         ports: 
-            - 3000:3000
+            - 3000:80
     angular:
         container_name: frontend_angular
         image: hasniwutz/angular_digitalereinkaufszettel:v0.1
         ports:
             - 4200:80
-            
+    vue:
+        container_name: frontend_vue
+        image: hasniwutz/vue_digitalereinkaufszettel:v0.1
+        ports:
+            - 2000:80
