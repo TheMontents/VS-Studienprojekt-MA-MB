@@ -382,7 +382,9 @@ In ShoppingListEntity.java wird die ShoppingListEntity definiert, welche auf der
 
 Mit Hilfe des Codes in der ShoppingListRepository.java Datei ist es dank Spring Data JPA nicht mehr notwendig eine Implementierung des Repository Interface zu schreiben, dies übernimmt Spring Data JPA indem eine Implementierung on the fly erstellt wird. JPARepository enthält dabei die vollständige API von CrudRepositry und PagingAndSortingRepository.
 
-In JPAController.java wird das REST Interface definiert. Mithilfe der @CrossOrigin Annotation werden die API aufrufe von unseren Frontends zugelassen. Die @RestController Annotation ist eine spezialisierte Version der @Controller und der @ResponseBody Annotation. Dabei wird jedes Rückgabeobjekt einer Methode die einen Request behandelt in eine HttpResponse serialisiert wird.
+In JPAController.java wird das REST Interface definiert. Mithilfe der @CrossOrigin Annotation werden die API aufrufe von unseren Frontends zugelassen. Die @RestController Annotation ist eine spezialisierte Version der @Controller und der @ResponseBody Annotation. Dabei wird jedes Rückgabeobjekt einer Methode die einen Request behandelt in eine HttpResponse serialisiert. Mit der @GetMapping, @PostMapping, @PutMapping und @DeleteMapping Annotationen wird ein HTTP GET, POST, PUT oder DELETE Request an eine Handler Methode gebunden. In dem Handler sind dann die Aktionen definiert die bei einem Request durchgeführt werden sollen. Außerdem wird eine entsprechende Antwort zurückgegeben.
+
+In der applications.properties Datei sind die benötigten Konfigurationen um auf die Datenbank zuzugreifen hinterlegt. 
 
 ### 1.5	Docker
 
