@@ -415,5 +415,5 @@ RUN npm run build --prod
 FROM nginx:alpine
 COPY --from=build-step /DigitalerEinkaufszettelAngular/dist/DigitalerEinkaufszettelAngular /usr/share/nginx/html
 ```
-Der erste Teil kompiliert und bildet die Angular Code Basis, dazu wird das node image als Basisimage benutzt und das Arbeitsverzeichnis festgelegt. Dann wird die package.json Datei kopiert und die Abhängigkeiten installiert. Dann wird der Sourcecode kopiert und die Applikation gebildet. Im zweiten Teil wird die Applikation per nginx-Server bereitgestellt, dazu wird nginx-Image als Basis-Image benutzt und der Standard nginx Inhalt mit dem vorherigen Build ersetzt. Die Dockerfiles der anderen Frontends wurden ebenfalls so erstellt.
+Der erste Teil kompiliert und buildet die Angular Code Basis, dazu wird das node Image als Basisimage benutzt und das Arbeitsverzeichnis festgelegt. Dann wird die package.json Datei kopiert und die Abhängigkeiten installiert. Anschließend wird der Sourcecode kopiert und die Applikation gebuildet. Im zweiten Teil wird die Applikation per nginx-Server bereitgestellt, dazu wird das nginx-Image als Basis-Image benutzt und der Standard nginx Inhalt mit dem vorherigen Build ersetzt. Die Dockerfiles der anderen Frontends wurden äquivalent dazu erstellt.
 ## 2.3	Fazit
