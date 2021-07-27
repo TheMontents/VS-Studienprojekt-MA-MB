@@ -1,5 +1,5 @@
 # VS-Studienprojekt-MA-MB
-## Thema Beschreibung
+## Themen Beschreibung
 Evaluierung verschiedener Frontend Technologien für Microservices am Beispiel einer simplen Spring Boot Anwendung
 
 # 1. Starten des Projekts
@@ -18,7 +18,9 @@ React Frontend: http://localhost:3000
 
 Vue Frontend: http://localhost:2000
 
-## 1.2 Frameworks
+# 2. Projekterklärung
+
+## 2.1 Frameworks
 In dieser Studienarbeit geht es um das Evaluierung verschiedener Frontend Technologien für Microservices am Beispiel einer simplen Spring Boot Anwendung, hierfür haben wir uns für die drei am meisten verbreiteten JavaScript Frontend Frameworks entschieden. Angular, React und Vue.js. Als Backend Framework wird dabei Spring-Boot verwenden. Diese Frameworks betrachten wir nun im Detail.
 
 ### 1.2.1 Frontend
