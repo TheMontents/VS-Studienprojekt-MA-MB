@@ -21,26 +21,26 @@ Vue Frontend: http://localhost:2000
 # 2. Projekterklärung
 
 ## 2.1 Frameworks
-In dieser Studienarbeit geht es um die Evaluierung verschiedener Frontend Technologien für Microservices am Beispiel einer simplen Spring Boot Anwendung, hierfür haben wir uns für die drei am meisten verbreiteten JavaScript Frontend Frameworks entschieden. Angular, React und Vue.js. Als Backend Framework wird dabei Spring Boot verwenden. Diese Frameworks betrachten wir nun im Detail.
+In dieser Studienarbeit geht es um die Evaluierung verschiedener Frontend Technologien für Microservices am Beispiel einer simplen Spring Boot Anwendung hierfür haben wir uns für die drei am meisten verbreiteten JavaScript Frontend Frameworks entschieden. Angular, React und Vue.js. Als Backend Framework wird dabei Spring Boot verwenden. Diese Frameworks betrachten wir nun im Detail.
 
 ### 2.1.1 Backend
 
 #### 2.1.1.1 Spring-Boot
-Spring Boot ist eine „Konvention vor Konfiguration“-Lösung für das Java-Framework Spring, die 2012 veröffentlicht wurde und die Komplexität der Konfiguration neuer Spring Projekte reduziert. Zu diesem Zweck legt Spring Boot eine Grundkonfiguration inklusive Richtlinien für die Nutzung des Frameworks sowie aller relevanten Drittanbieter-Bibliotheken fest und gibt damit den Weg vor, um den Einstieg in neue Projekte so mühelos wie möglich zu gestalten. Auf diese Weise lässt sich die Kreation eigenständiger, produktionsreifer Applikationen auf Basis von Spring erheblich vereinfachen, weshalb der Großteil neuer Spring-Anwendungen konsequenterweise auch auf Spring Boot aufsetzt.
+Spring Boot ist eine „Konvention vor Konfiguration“-Lösung für das Java-Framework Spring, die 2012 veröffentlicht wurde und die Komplexität der Konfiguration neuer Spring Projekte reduziert. Zu diesem Zweck legt Spring Boot eine Grundkonfiguration inklusive Richtlinien für die Nutzung des Frameworks sowie aller relevanten Drittanbieter-Bibliotheken fest und gibt damit den Weg vor, um den Einstieg in neue Projekte so mühelos wie möglich zu gestalten. Auf diese Weise lässt sich die Kreation eigenständiger produktionsreifer Applikationen auf Basis von Spring erheblich vereinfachen, weshalb der Großteil neuer Spring-Anwendungen konsequenterweise auch auf Spring Boot aufsetzt.
 
 Die Merkmale von Spring Boot lassen sich wie folgt zusammenfassen:
 
-direktes Einbetten von Webserver-/Container-Anwendungen wie Apache Tomcat oder Jetty möglich, wodurch kein Einsatz von WAR-Dateien (Web Application Archive) erforderlich ist vereinfachte Maven-Konfiguration dank „Starter“-POMs (Project Ob-ject Models) automatische Spring-Konfiguration, wann immer dies möglich ist. Bereitstellung nichtfunktionaler Features wie Metriken oder ausgelagerter Konfigurationen
+Direktes Einbetten von Webserver-/Container-Anwendungen wie Apache Tomcat oder Jetty möglich, wodurch kein Einsatz von WAR-Dateien (Web Application Archive) erforderlich ist vereinfachte Maven-Konfiguration dank „Starter“-POMs (Project Ob-ject Models) automatische Spring-Konfiguration, wann immer dies möglich ist. Bereitstellung nicht funktionaler Features wie Metriken oder ausgelagerter Konfigurationen
 
 ### 2.1.1.2	Backend Beschreibung
 
 ![Erstellung unseres Backend Projekts mit Spring](Bilder/SpringInitializr.png)
 
-Die Spring-Boot Anwendung wurde mit den im Bild zu sehenden Einstellungen erstellt. Als Dependencies wurden hierbei Spring Web, Spring Boot Actuator, Spring Data JPA sowie PostgreSQL Driver verwendet. 
+Die Spring Boot Anwendung wurde mit den im Bild zu sehenden Einstellungen erstellt. Als Dependencies wurden hierbei Spring Web, Spring Boot Actuator, Spring Data JPA sowie PostgreSQL Driver verwendet. 
 
-In ShoppingListEntity.java wird die ShoppingListEntity definiert, welche auf der Datenbank persistent gespeichert wird. Mit der @Entity Annotation kennzeichnet man, dass die Klasse von JPA persistiert werden soll. Die @Id Annotation kennzeichnet den Primärschlüssel. Mit der @GeneratedValue(strategy = GenerationType.SEQUENCE) Annotation sagt man außerdem, dass die zugehörigen Werte aufsteigend generiert werden sollen. Eine solche Klasse muss außerdem einen Default Konstruktor enthalten. Des weiteren sind noch ein weiterer Konstruktor sowie benötigte getter und setter Methoden definiert. 
+In ShoppingListEntity.java wird die ShoppingListEntity definiert, welche auf der Datenbank persistent gespeichert wird. Mit der @Entity Annotation kennzeichnet man, dass die Klasse von JPA persistiert werden soll. Die @Id Annotation kennzeichnet den Primärschlüssel. Mit der @GeneratedValue(strategy = GenerationType.SEQUENCE) Annotation sagt man außerdem, dass die zugehörigen Werte aufsteigend generiert werden sollen. Eine solche Klasse muss außerdem einen Default Konstruktor enthalten. Des Weiteren sind noch ein weiterer Konstruktor sowie benötigte getter und setter Methoden definiert. 
 
-Mit Hilfe des Codes in der ShoppingListRepository.java Datei ist es dank Spring Data JPA nicht mehr notwendig eine Implementierung des Repository Interface zu schreiben, dies übernimmt Spring Data JPA indem eine Implementierung on the fly erstellt wird. JPARepository enthält dabei die vollständige API von CrudRepositry und PagingAndSortingRepository.
+Mithilfe des Codes in der ShoppingListRepository.java Datei ist es dank Spring Data JPA nicht mehr notwendig eine Implementierung des Repository Interface zu schreiben, dies übernimmt Spring Data JPA indem eine Implementierung on the fly erstellt wird. JPARepository enthält dabei die vollständige API von CrudRepositry und PagingAndSortingRepository.
 
 In JPAController.java wird das REST Interface definiert. Mithilfe der @CrossOrigin Annotation werden die API aufrufe von unseren Frontends zugelassen. Die @RestController Annotation ist eine spezialisierte Version der @Controller und der @ResponseBody Annotation. Dabei wird jedes Rückgabeobjekt einer Methode die einen Request behandelt in eine HttpResponse serialisiert. Mit der @GetMapping, @PostMapping, @PutMapping und @DeleteMapping Annotationen wird ein HTTP GET, POST, PUT oder DELETE Request an eine Handler Methode gebunden. In dem Handler sind dann die Aktionen definiert die bei einem Request durchgeführt werden sollen. Außerdem wird eine entsprechende Antwort zurückgegeben.
 
@@ -49,14 +49,14 @@ In der applications.properties Datei sind die benötigten Konfigurationen um auf
 ### 2.1.2 Frontend
 
 #### 2.1.2.1 Angular
-Das von Google gepflegte Framwork Angular ist eine der ältesten Webentwicklungs Frameworks. Die erste Version stammt aus dem Jahr 2010, mittlerweile steht wurde am 13. Mai 2021 die 12. Version released (Stand: 19. Juli 2021). Entsprechend ausgereift ist das Framework. Von Haus aus gibt es kaum eine Problemstellung, die mit Angular nicht gelöst und als Web-Applikation umgesetzt werden kann.
-Das Coding erfolgt in der Programmiersprache TypeScript. Diese kann man sich vorstellen als JavaScript, erweitert um objektorientierte Programmierelemente. Insbesondere statische Typisierung (also Typzuweisung zu Variablen) kann gerade bei größeren Projekten helfen, Fehler zu vermeiden gewisse Strukturen einzuhalten.
+Das von Google gepflegte Framework Angular ist eine der ältesten Webentwicklungs Frameworks. Die erste Version stammt aus dem Jahr 2010, mittlerweile wurde am 13. Mai 2021 die 12. Version released (Stand: 19. Juli 2021). Entsprechend ausgereift ist das Framework. Von Haus aus gibt es kaum eine Problemstellung, die mit Angular nicht gelöst und als Web-Applikation umgesetzt werden kann.
+Das Coding erfolgt in der Programmiersprache TypeScript. Diese kann man sich vorstellen als JavaScript, erweitert um objektorientierte Programmierelemente. Insbesondere die statische Typisierung (also Typzuweisung zu Variablen) kann gerade bei größeren Projekten helfen, Fehler zu vermeiden und gewisse Strukturen einzuhalten.
 
-Grundlegenden Konzepte die wichtig bei Angular sind:
+Grundlegenden Konzepte, die bei Angular wichtig sind:
 
 **Components** sind logische Kapselungen gewünschter Funktionalitäten, die sich an gewünschten Stellen wiederverwenden lassen.
 
-**Services** sind eine einfache Möglichkeit Funktionen für alle Komponenten zugänglich zu machen. (Globalisierte Funktion die man überall verwenden kann)
+**Services** sind eine einfache Möglichkeit, Funktionen für alle Komponenten zugänglich zu machen. (Globalisierte Funktion die man überall verwenden kann)
 
 **Directives** erleichtern das Coden von JavaScript, indem Grundfunktionen wie if-Abzweigungen oder for-Loops mit wenigen Schritten ohne viel Code eingefügt werden können.
 
@@ -64,15 +64,15 @@ Grundlegenden Konzepte die wichtig bei Angular sind:
 
 
 #### 2.1.2.1.1 Angular Installation
-Um Angular zu installieren, haben wir ein Terminalfenster geöffnet und den folgenden Befehl ausgeführt:
+Um Angular zu installieren wurde ein Terminalfenster geöffnet und der folgende Befehl ausgeführt:
 ```
 npm install -g @angular/cli
 ```
-Als nächstes haben wir die Angular Application installiert mit:
+Als nächstes haben wurde die Angular Application installiert:
 ```
 ng new DigitalerEinkaufszettelAngular
 ```
-Nun fügen wir unsere Komponenten hinzu aus der sich am Ende die Webseite zusammensetzen wird:
+Nun wurden die Komponenten hinzugefügt, aus der sich am Ende die Webseite zusammensetzt:
 ```
 cd DigitalerEinkaufszettelAngular
 ng g c page-list
@@ -80,16 +80,16 @@ ng g c _template/template-tobuy
 ng g c _template/template-tobuy-form
 ng g c _template/template-header  
 ```
-Nun fügen wir einen Service hinzu:
+Jetzt wurde ein Service hinzugefügt:
 ```
 ng g s _service/data
 ```
-Nun fügen wir noch custom Interfaces hinzu:
+Anschließend wurde noch ein custom Interfaces hinzugefügt:
 ```
 ng g i _interface/tobuy
 ng g i _interface/eventping
 ```
-Nun testen wir wieder ob alles funktioniert hat:
+Zuletzt testet man, ob alles funktioniert hat:
 ```
 ng serve --open
 ```
@@ -106,7 +106,7 @@ ng serve --open
 * Ersetzt keine Webseite im "üblichen" Sinne
 
 #### 2.1.2.1.4 Die API Anbindung:
-Für die Anbindung des Angular Frontends an die REST API wurde in der Datei data.service.ts mit dem Observable und einem HTTP Client in den Methoden getToBuy, postToBuy und deleteToBuy die GET, POST oder DELETE Request an die API geschickt. Die Datei data.service.ts am Anfang hinzufügt und dient nur zur Anbindung der API.
+Für die Anbindung des Angular Frontends an die REST API wurde in der Datei data.service.ts mit dem Observable und einem HTTP Client in den Methoden getToBuy, postToBuy und deleteToBuy der jeweilige GET, POST oder DELETE Request an die API geschickt. Die Datei data.service.ts wurde am Anfang hinzufügt und dient nur zur Anbindung der API.
 Anbei befindet sich der abgespeckte Code nur für den GET Request:
 ```
 @Injectable({
@@ -132,7 +132,7 @@ export class DataService {
 
 }
 ```
-In der page-list.component.ts sieht man nun den Aufruf dieser getToBuy Funktion und die Zuweisen in das Array:
+In der page-list.component.ts sieht man nun den Aufruf dieser getToBuy Funktion und das einfügen in das Array:
 ```
 public loadData():void {
     this.$toBuys = [];
@@ -145,7 +145,7 @@ public loadData():void {
 
   }
 ``` 
-In der page-list.component.html sieht man dann wie durch das Array iteriert wird:
+In der page-list.component.html sieht man dann, wie durch das Array iteriert wird:
 ```
  <app-template-tobuy (ping)= "update($event)" [toBuy$]= "toBuy" *ngFor="let toBuy of $toBuys"></app-template-tobuy>   
 ``` 
