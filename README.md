@@ -21,16 +21,16 @@ Vue Frontend: http://localhost:2000
 # 2. Projekterklärung
 
 ## 2.1 Frameworks
-In dieser Studienarbeit geht es um das Evaluierung verschiedener Frontend Technologien für Microservices am Beispiel einer simplen Spring Boot Anwendung, hierfür haben wir uns für die drei am meisten verbreiteten JavaScript Frontend Frameworks entschieden. Angular, React und Vue.js. Als Backend Framework wird dabei Spring-Boot verwenden. Diese Frameworks betrachten wir nun im Detail.
+In dieser Studienarbeit geht es um die Evaluierung verschiedener Frontend Technologien für Microservices am Beispiel einer simplen Spring Boot Anwendung, hierfür haben wir uns für die drei am meisten verbreiteten JavaScript Frontend Frameworks entschieden. Angular, React und Vue.js. Als Backend Framework wird dabei Spring Boot verwenden. Diese Frameworks betrachten wir nun im Detail.
 
 ### 2.1.1 Backend
 
 #### 2.1.1.1 Spring-Boot
-Spring Boot ist eine „Konvention vor Konfiguration“-Lösung für das Java-Framework Spring, die 2012 veröffentlicht wurde und die Komplexität der Konfiguration neuer Spring-Projekte reduziert. Zu diesem Zweck legt Spring Boot eine Grundkonfiguration inklusive Richtlinien für die Nutzung des Frameworks sowie aller relevanten Drittanbieter-Bibliotheken fest und gibt damit den Weg vor, um den Einstieg in neue Projekte so mühelos wie möglich zu gestalten. Auf diese Weise lässt sich die Kreation eigenständiger, produktionsreifer Applikationen auf Basis von Spring erheblich vereinfachen, weshalb der Großteil neuer Spring-Anwendungen konsequenterweise auch auf Spring Boot aufsetzt.
+Spring Boot ist eine „Konvention vor Konfiguration“-Lösung für das Java-Framework Spring, die 2012 veröffentlicht wurde und die Komplexität der Konfiguration neuer Spring Projekte reduziert. Zu diesem Zweck legt Spring Boot eine Grundkonfiguration inklusive Richtlinien für die Nutzung des Frameworks sowie aller relevanten Drittanbieter-Bibliotheken fest und gibt damit den Weg vor, um den Einstieg in neue Projekte so mühelos wie möglich zu gestalten. Auf diese Weise lässt sich die Kreation eigenständiger, produktionsreifer Applikationen auf Basis von Spring erheblich vereinfachen, weshalb der Großteil neuer Spring-Anwendungen konsequenterweise auch auf Spring Boot aufsetzt.
 
 Die Merkmale von Spring Boot lassen sich wie folgt zusammenfassen:
 
-direktes Einbetten von Webserver-/Container-Anwendungen wie Apache Tomcat oder Jetty möglich, wodurch kein Einsatz von WAR-Dateien (Web Application Archive) erforderlich ist vereinfachte Maven-Konfiguration dank „Starter“-POMs (Project Ob-ject Models) automatische Spring-Konfiguration, wann immer dies möglich ist Bereitstellung nichtfunktionaler Features wie Metriken oder ausgelagerter Konfigurationen
+direktes Einbetten von Webserver-/Container-Anwendungen wie Apache Tomcat oder Jetty möglich, wodurch kein Einsatz von WAR-Dateien (Web Application Archive) erforderlich ist vereinfachte Maven-Konfiguration dank „Starter“-POMs (Project Ob-ject Models) automatische Spring-Konfiguration, wann immer dies möglich ist. Bereitstellung nichtfunktionaler Features wie Metriken oder ausgelagerter Konfigurationen
 
 ### 2.1.1.2	Backend Beschreibung
 
@@ -38,7 +38,7 @@ direktes Einbetten von Webserver-/Container-Anwendungen wie Apache Tomcat oder J
 
 Die Spring-Boot Anwendung wurde mit den im Bild zu sehenden Einstellungen erstellt. Als Dependencies wurden hierbei Spring Web, Spring Boot Actuator, Spring Data JPA sowie PostgreSQL Driver verwendet. 
 
-In ShoppingListEntity.java wird die ShoppingListEntity definiert, welche auf der Datenbank persistent gespeichert wird. Mit der @Entity Annotation kennzeichnet man, dass die Klasse von JPA persistiert werden soll. Die @Id Annotation kennzeichnet den Primärschlüssel. Mit der @GeneratedValue(strategy = GenerationType.SEQUENCE) Annotation sagt man außerdem, dass die zugehörigen Werte aufsteigend generiert werden sollen. Eine solche Klasse muss außerdem einen Default Konstruktor enthalten. DEs weiteren sind noch ein weiterer Konstruktor sowie benötigte getter und setter Methoden definiert. 
+In ShoppingListEntity.java wird die ShoppingListEntity definiert, welche auf der Datenbank persistent gespeichert wird. Mit der @Entity Annotation kennzeichnet man, dass die Klasse von JPA persistiert werden soll. Die @Id Annotation kennzeichnet den Primärschlüssel. Mit der @GeneratedValue(strategy = GenerationType.SEQUENCE) Annotation sagt man außerdem, dass die zugehörigen Werte aufsteigend generiert werden sollen. Eine solche Klasse muss außerdem einen Default Konstruktor enthalten. Des weiteren sind noch ein weiterer Konstruktor sowie benötigte getter und setter Methoden definiert. 
 
 Mit Hilfe des Codes in der ShoppingListRepository.java Datei ist es dank Spring Data JPA nicht mehr notwendig eine Implementierung des Repository Interface zu schreiben, dies übernimmt Spring Data JPA indem eine Implementierung on the fly erstellt wird. JPARepository enthält dabei die vollständige API von CrudRepositry und PagingAndSortingRepository.
 
