@@ -68,7 +68,7 @@ Um Angular zu installieren wurde ein Terminalfenster geöffnet und der folgende 
 ```
 npm install -g @angular/cli
 ```
-Als nächstes haben wurde die Angular Application installiert:
+Als nächstes wurde die Angular Application installiert:
 ```
 ng new DigitalerEinkaufszettelAngular
 ```
@@ -84,7 +84,7 @@ Jetzt wurde ein Service hinzugefügt:
 ```
 ng g s _service/data
 ```
-Anschließend wurde noch ein custom Interfaces hinzugefügt:
+Anschließend wurden noch custom Interfaces hinzugefügt:
 ```
 ng g i _interface/tobuy
 ng g i _interface/eventping
@@ -149,11 +149,11 @@ In der page-list.component.html sieht man dann, wie durch das Array iteriert wir
 ```
  <app-template-tobuy (ping)= "update($event)" [toBuy$]= "toBuy" *ngFor="let toBuy of $toBuys"></app-template-tobuy>   
 ``` 
-Die app-template-tobuy wird dann so oft wie es Artikel gibt Aufgrund der die template-tobuy.componenent.html erstellt.
+Die app-template-tobuy wird dann so oft wie es Artikel gibt Aufgrund der template-tobuy.componenent.html erstellt.
 Das heißt es wird pro Artikel eine komplett neue und freistehende template-tobuy.componenent.html mit den Daten gefüllt und in die page-list.component.html geschrieben.
 
 #### 2.1.2.1.5 Die verschiedene Components:
-In der Angular App DigitalerEinkaufszettelAngular gibt es verschieden Components, jeweils pro Component gibt es eine HTML zum anzeigen, eine Typescript für die Implementierung und eine Typescript Datei zum Testen.
+In der Angular App DigitalerEinkaufszettelAngular gibt es verschieden Components, jeweils pro Component gibt es eine HTML Datei zum anzeigen, eine Typescript Datei für die Implementierung und eine Typescript Datei zum Testen.
 Welche Components und wie man eine Component erstellt wird siehe oben.
 ##### Beschreibung der Components:
 1. page-list -> Komponente für die eigentliche Oberfläche
@@ -177,7 +177,7 @@ es gibt kaum eine Frontend-Herausforderung, die mit Angular nicht gelöst werden
 #### 2.1.2.2 React
 **React** ist ein Framework entwickelt von Facebook, veröffentlicht im Jahr 2013 und geht vom Grundansatz einen anderen Weg als Angular. React ist von Haus aus schlank, klein und elementar gehalten. Es wird zunächst nur die Grundfunktionalität angeboten, z.B. Components und Properties (zum Handling von Daten). 
 
-React ist eigentlich kein Framework, sondern eine Library handelt. Bei React verzichtet man bewusst auf Vorgabe eines festen Workflows, um Aufgaben zu lösen und Applikationen zu erstellen. Es genügt daher die Festlegung von React als einer flexibel einbindbaren Library.
+React ist eigentlich kein Framework, sondern eine Library. Bei React verzichtet man bewusst auf die Vorgabe eines festen Workflows, um Aufgaben zu lösen und Applikationen zu erstellen. Es genügt daher die Festlegung von React als eine flexibel einbindbare Library.
 
 React lässt sich auf zwei Arten nutzen. Man kann ein vorhandenes HTML-Projekt mit React anreichern oder man startet ein komplett neues React-Projekt, bevorzugt über die Kommandozeile des Systems.
 Die Entwickler haben zum Coden die Sprache JSX erfunden. Die Idee ist vergleichbar mit einer dynamischen Erweiterung des klassischen HTML und es lässt sich schnell intuitiv damit arbeiten.
@@ -229,7 +229,7 @@ this.state = {
             newShoppingListEntry: ""
 };
 ```
-Wurde die Komponente erfolgreich in das DOM gerendert so wird die componentDidMout() Methode aufgerufen. Hier wird die Methode getShoppingList() des ShoppingListService aufgerufen welche den GET Request an die API sendet. Die Daten aus der Antwort werden dann der Variable shoppingList des Status der Komponente zugewiesen:
+Wurde die Komponente erfolgreich in das DOM gerendert so wird die componentDidMout() Methode aufgerufen. Hier wird die Methode getShoppingList() des ShoppingListService aufgerufen, welche den GET Request an die API sendet. Die Daten aus der Antwort werden dann der Variable shoppingList des Status der Komponente zugewiesen:
 ```
 componentDidMount(){
   ShoppingListService.getShoppingList().then((response) => {
@@ -289,7 +289,7 @@ handleSubmit(event){
 **Zwischenfazit Angular vs. React:** an Funktionsumfang nehmen sich beide Frameworks kaum etwas. Beide werden von Großkonzernen betreut und behaupten sich seit vielen Jahren erfolgreich am Markt. Auch die Communities sind entsprechend etabliert, so dass Hilfe nie weit entfernt ist. Wichtigster Unterschied ist der monolithische Ansatz von Angular (fast alles aus einer Hand und ein Weg zum Ziel) gegenüber dem Community-zentrierten Weg von React. Eine Auswahl zwischen beiden ist eine Frage des persönlichen Geschmacks und der eigenen Herangehensweise an Coding-Aufgaben.
 
 #### 2.1.2.3 Vue.js
-Ähnlich zu Angular handelt es sich hier um eine monolithische Lösung, die dem Entwickler alle nötigen Tools für eine umfassende Applikation anbietet. Auf Community-Tools kann zurückgegriffen werden, das ist aber nicht immer nötig (im Gegensatz zu React).
+Ähnlich zu Angular handelt es sich hier um eine monolithische Lösung, die dem Entwickler alle nötigen Tools für eine umfassende Applikation anbietet. Auf Community-Tools kann zurückgegriffen werden, dies ist aber nicht immer nötig (im Gegensatz zu React).
 
 Ähnlich React lässt sich Vue.js direkt in eine vorhandene HTML-Seite oder über die Kommandozeile einbinden. Im ersten Ansatz wird die Vue.js-Bibliothek über ein script-Tag eingebunden und richtet das Objekt Vue als globale Variable im Projekt ein. Ab einer mittleren Projektgröße ist es jedoch der üblichere und ratsame Weg, Vue.js über NPM oder die CLI zu starten.
 
